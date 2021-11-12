@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_navigation_home_selector"
+        android:title="@string/principal"/>
+
+    <item
+        android:id="@+id/mapFragment"
+        android:icon="@drawable/ic_navigation_map_selector"
+        android:title="@string/mapa"/>
+
+    <item
+        android:id="@+id/infoFragment"
+        android:icon="@drawable/ic_navigation_info_selector"
+        android:title="@string/informate"/>
+
+    <item
+        android:id="@+id/calendarFragment"
+        android:icon="@drawable/ic_navigation_calendar_selector"
+        android:title="@string/calendario"/>
+
+    <item
+        android:id="@+id/newsFragment"
+        android:icon="@drawable/ic_navigation_news_selector"
+        android:title="@string/noticias"/>
+
+</menu>

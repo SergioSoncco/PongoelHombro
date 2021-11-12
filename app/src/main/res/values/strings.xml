@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Pongo el Hombro</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="principal">Principal</string>
+    <string name="mapa">Mapa</string>
+    <string name="informate">Informate</string>
+    <string name="calendario">Calendario</string>
+    <string name="noticias">Noticias</string>
+</resources>
