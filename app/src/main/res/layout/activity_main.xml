@@ -6,11 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <include layout="@layout/toolbar"/>
+
+
     <FrameLayout
         android:id="@+id/frame_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="500dp"
+        android:layout_above="@+id/bottom_navigation"
         android:layout_alignParentTop="true"
+        android:layout_marginTop="47dp"
+        android:layout_marginBottom="0dp"
         app:layout_behavior='@string/appbar_scrolling_view_behavior' />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
