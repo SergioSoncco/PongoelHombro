@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/framehome"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
 
@@ -13,38 +13,39 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="casual"
-        android:text="Hola!"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/quicksand_bold"
+        android:text="Hola,"
         android:textColor="#000000"
-        android:layout_marginLeft="10dp"
 
         android:textSize="34sp"
-        tools:text="Hola!" />
+        tools:text="Hola," />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="100dp"
-        android:textColor="#624DC3"
-        android:textSize="34sp"
-        android:text="Usuario" />
+        android:layout_marginStart="100dp"
+        android:fontFamily="@font/quicksand_bold"
+        android:text="Usuario"
+        android:textColor="#9EBDED"
+        android:textSize="34sp" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="casual"
-        android:text="Que Quieres Hacer Hoy?"
-        android:textColor="#000000"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="50dp"
-        android:textSize="24sp"
-         />
+        android:fontFamily="@font/quicksand_light"
+        android:text="¿Qué quieres hacer hoy?"
+        android:textColor="#000000"
+        android:textSize="18sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="100dp"
-        android:fontFamily="casual"
+        android:fontFamily="@font/quicksand_bold"
         android:text="Dosis"
         android:textColor="#000000"
         android:textSize="24sp"
@@ -54,9 +55,9 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="330dp"
-        android:fontFamily="casual"
+        android:fontFamily="@font/quicksand_bold"
         android:text="Noticias Minsa"
         android:textColor="#000000"
         android:textSize="24sp"
@@ -79,13 +80,13 @@
                 android:id="@+id/button8a"
                 android:layout_width="180dp"
                 android:layout_height="133dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:background="@drawable/buttonround"
 
-                android:fontFamily="casual"
-                android:text="1ra dosis"
-                android:textColor="#000000"
-                android:textSize="24sp" />
+                android:fontFamily="@font/quicksand_medium"
+                android:text="1ra dosis\n Aplicada"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
             <Button
                 android:id="@+id/button8b"
@@ -94,21 +95,22 @@
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/buttonround"
 
-                android:fontFamily="casual"
-                android:text="2da dosis"
+                android:fontFamily="@font/quicksand_medium"
+                android:text="2da dosis\n Aplicada"
                 android:textColor="#000000"
-                android:textSize="24sp" />
+                android:textSize="16sp" />
+
             <Button
                 android:id="@+id/button8c"
-                android:background="@drawable/buttonround"
                 android:layout_width="180dp"
                 android:layout_height="133dp"
                 android:layout_marginLeft="10dp"
+                android:background="@drawable/buttonround"
 
-                android:fontFamily="casual"
-                android:text="3ra dosis"
+                android:fontFamily="@font/quicksand_medium"
+                android:text="3ra dosis\n Aplicada"
                 android:textColor="#000000"
-                android:textSize="24sp" />
+                android:textSize="16sp" />
         </LinearLayout>
     </HorizontalScrollView>
 
@@ -120,16 +122,6 @@
 
         />
 
-
-    <Button
-        android:id="@+id/buttonlog"
-        android:layout_width="60dp"
-        android:layout_height="29dp"
-        android:layout_marginLeft="330dp"
-
-        android:text="Login"
-        android:textColor="#000000"
-        android:textSize="8dp" />
 
 
 </FrameLayout>
