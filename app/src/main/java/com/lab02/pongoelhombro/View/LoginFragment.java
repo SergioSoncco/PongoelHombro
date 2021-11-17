@@ -1,12 +1,17 @@
 package com.lab02.pongoelhombro.View;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 
 import com.lab02.pongoelhombro.R;
 
@@ -21,10 +26,16 @@ public class LoginFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+     EditText user,dni;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    View vista;
+    CheckBox recordar;
+    Button ingresar;
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -61,6 +72,46 @@ public class LoginFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false);
+        vista = inflater.inflate(R.layout.fragment_login, container, false);
+        inicializar();
+        if(revisarSesion())
+        {
+            user.setText(this.preferences.getString("user",""));
+            dni.setText(this.preferences.getString("dni",""));
+        }else
+        {
+            //vista.Toast.makeText(this, "Iniciar Sesion", Toast.LENGTH_SHORT).show();
+        }
+        ingresar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                guardarSesion(recordar.isChecked());
+            }
+        });
+
+
+        return vista;
     }
+    private boolean revisarSesion()
+    {
+        return this.preferences.getBoolean("sesion", false);
+    }
+    private void guardarSesion(boolean check)
+    {
+        editor.putBoolean("sesion", check);
+        editor.putString("user",user.getText().toString());
+        editor.putString("dni",dni.getText().toString());
+        editor.apply();
+
+
+    }
+    private void inicializar(){
+        preferences=getActivity().getPreferences(Context.MODE_PRIVATE);
+        editor=preferences.edit();
+        recordar=vista.findViewById(R.id.recordar);
+        user=vista.findViewById(R.id.nombre);
+        dni=vista.findViewById(R.id.dni);
+        ingresar=vista.findViewById(R.id.ingresar);
+    }
+
 }

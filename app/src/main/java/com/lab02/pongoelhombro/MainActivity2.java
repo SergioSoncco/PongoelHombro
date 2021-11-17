@@ -16,6 +16,8 @@ import com.lab02.pongoelhombro.View.*;
 public class MainActivity2 extends AppCompatActivity {
 
     LoginFragment login = new LoginFragment();
+    PrimeraDosisFragment primera_dosis=new PrimeraDosisFragment();
+    SegundaDosisFragment segunda_dosis=new SegundaDosisFragment();
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
@@ -28,6 +30,15 @@ public class MainActivity2 extends AppCompatActivity {
         {
             loadFragment(login);
         }
+        if(fragment==4)
+        {
+            loadFragment(primera_dosis);
+        }
+        if(fragment==5)
+        {
+            loadFragment(segunda_dosis);
+        }
+
 
     }
     public void loadFragment(Fragment fragment){

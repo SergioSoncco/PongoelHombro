@@ -18,35 +18,42 @@
             android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tus vacunas"
-            android:textColor="@color/black"
             android:fontFamily="@font/quicksand_bold"
+            android:text="1ra Dosis"
+            android:textColor="@color/black"
             android:textSize="34sp" />
 
-        <CalendarView
-            android:id="@+id/calendarView2"
+        <TextView
+            android:id="@+id/textView3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <Button
-            android:id="@+id/primera"
-            style="@style/Widget.AppCompat.Button"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/quicksand_bold"
+            android:text="Feha:"
             android:textColor="@color/black"
-            android:layout_width="match_parent"
-            android:layout_height="66dp"
-            android:layout_margin="10dp"
-            android:background="@drawable/buttonround"
-            android:ellipsize="start"
-            android:text="1ra Dosis" />
+            android:textSize="25sp" />
 
-        <Button
-            android:id="@+id/segunda"
+        <EditText
+            android:id="@+id/editTextDate"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="date" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/quicksand_bold"
+            android:text="Vacuna:"
             android:textColor="@color/black"
-            android:layout_height="62dp"
-            android:layout_margin="10dp"
-            android:background="@drawable/buttonround"
-            android:text="2da Dosis" />
+            android:textSize="25sp" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName" />
 
     </LinearLayout>
 </FrameLayout>
