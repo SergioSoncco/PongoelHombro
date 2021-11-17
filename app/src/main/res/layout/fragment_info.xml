@@ -1,14 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameinfo"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.InfoFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainActivity">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:fontFamily="casual"
+        android:text="Informate"
+        android:textColor="#000000"
+        android:textSize="34sp" />
+
+
+    <TextView
+        android:id="@+id/tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="80dp"
+        android:fontFamily="casual"
+        android:text="Vacunas"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="330dp"
+        android:fontFamily="casual"
+        android:text="En el Perú"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="380dp"
+        android:fontFamily="casual"
+        android:text="En proceso . . ."
+        android:textColor="#000000"
+        android:textSize="24sp"
+         />
+
+    <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="157dp"
+        android:layout_marginTop="150dp"
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck">
+
+
+        <LinearLayout
+            android:id="@+id/linearvacunas"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:id="@+id/b1"
+                android:layout_width="187dp"
+                android:layout_height="133dp"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/buttonround"
+                android:fontFamily="casual"
+                android:text="pfizer"
+                android:textColor="#000000"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/b2"
+                android:layout_width="187dp"
+                android:layout_height="133dp"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/buttonround"
+                android:fontFamily="casual"
+                android:text="sinopharm"
+                android:textColor="#000000"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/b3"
+                android:layout_width="220dp"
+                android:layout_height="133dp"
+
+                android:layout_marginStart="10dp"
+                android:background="@drawable/buttonround"
+                android:fontFamily="casual"
+                android:text="astrazeneca"
+                android:textColor="#000000"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+
 
 </FrameLayout>
