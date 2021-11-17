@@ -13,6 +13,8 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.lab02.pongoelhombro.R;
 
 
@@ -23,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     InfoFragment infoFragment = new InfoFragment();
     CalendarFragment calendarFragment = new CalendarFragment();
     NewsFragment newsFragment = new NewsFragment();
+
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +46,18 @@ public class MainActivity extends AppCompatActivity {
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
                 Intent intent=new Intent(profileButton.getContext(),MainActivity2.class);
-                intent.putExtra("fragment",1);
+                if (user != null) {
+                    // User is signed in
+                    intent.putExtra("fragment",1);
+                } else {
+                    // No user is signed in
+                    intent.putExtra("fragment",6);
+                }
+
                 startActivity(intent);
             }
         });

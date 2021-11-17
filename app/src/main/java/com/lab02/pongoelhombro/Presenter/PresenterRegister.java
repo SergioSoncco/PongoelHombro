@@ -1,6 +1,5 @@
 package com.lab02.pongoelhombro.Presenter;
 
-
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
@@ -14,32 +13,41 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 
-public class RegisterAdapter {
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
+public class PresenterRegister {
 
     private Context context;
-    private String TAG = "RegisterAdapter";
+    private String TAG = "PresenterLogin";
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
-    public RegisterAdapter(Context context, FirebaseAuth mAuth, DatabaseReference mDatabase) {
+    public PresenterRegister(Context context, FirebaseAuth mAuth, DatabaseReference mDatabase) {
         this.context = context;
         this.mAuth = mAuth;
         this.mDatabase = mDatabase;
     }
 
-    public void signInUser(String UsuNom, String UsuDni){
-        mAuth.signInWithEmailAndPassword(UsuNom, UsuDni)
+    public void signUpUser(String UsuCor, String UsuCon){
+        mAuth.createUserWithEmailAndPassword(UsuCor, UsuCon)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithEmail:success");
-                            Toast.makeText(context, "Inició Sesión",
+                            Log.d(TAG, "createUSer:success");
+                            Toast.makeText(context, "Creado Exitosamente",
                                     Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
-
-                            mDatabase.child("Usuario").setValue(task.getResult().getUser().getUid());
+                            Map<String, Object> usuario = new HashMap<>();
+                            usuario.put("UsuCod", UUID.randomUUID().toString());
+                            usuario.put("UsuCor",UsuCor);
+                            usuario.put("UsuCon",UsuCon);
+                            usuario.put("UsuLon","");
+                            usuario.put("UsuLat","");
+                            mDatabase.child("Usuario").child(task.getResult().getUser().getUid()).updateChildren(usuario);
 
                         } else {
                             // If sign in fails, display a message to the user.

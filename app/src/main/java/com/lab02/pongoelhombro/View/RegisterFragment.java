@@ -15,7 +15,7 @@ import android.widget.EditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.lab02.pongoelhombro.Presenter.PresenterLogin;
+import com.lab02.pongoelhombro.Presenter.PresenterRegister;
 import com.lab02.pongoelhombro.R;
 
 /**
@@ -23,7 +23,7 @@ import com.lab02.pongoelhombro.R;
  * Use the {@link LoginFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LoginFragment extends Fragment {
+public class RegisterFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -42,9 +42,9 @@ public class LoginFragment extends Fragment {
 
 
     private FirebaseAuth mAuth;
-    private PresenterLogin registerAdapter;
+    private PresenterRegister registerAdapter;
 
-    public LoginFragment() {
+    public RegisterFragment() {
         // Required empty public constructor
     }
 
@@ -76,7 +76,7 @@ public class LoginFragment extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        registerAdapter = new PresenterLogin(this.getContext(), mAuth, databaseReference);
+        registerAdapter = new PresenterRegister(this.getContext(), mAuth, databaseReference);
 
 
     }
@@ -103,7 +103,7 @@ public class LoginFragment extends Fragment {
                 String UsuNom = user.getText().toString();
                 String UsuDni = dni.getText().toString();
 
-                registerAdapter.signInUser(UsuNom,UsuDni);
+                registerAdapter.signUpUser(UsuNom,UsuDni);
             }
         });
 

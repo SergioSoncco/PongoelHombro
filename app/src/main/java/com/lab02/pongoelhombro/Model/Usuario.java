@@ -2,11 +2,11 @@ package com.lab02.pongoelhombro.Model;
 
 class Usuario {
 
-    private String UsuCod, UsuCor, UsuDni, UsuLon, UsuLat;
+    private String UsuCod, UsuCor, UsuCon, UsuLon, UsuLat;
 
     public Usuario(String usuNom, String usuDni) {
         UsuCor = usuNom;
-        UsuDni = usuDni;
+        UsuCon = usuDni;
     }
 
     public String getUsuCod() {
@@ -25,12 +25,12 @@ class Usuario {
         UsuCor = usuNom;
     }
 
-    public String getUsuDni() {
-        return UsuDni;
+    public String getUsuCon() {
+        return UsuCon;
     }
 
-    public void setUsuDni(String usuDni) {
-        UsuDni = usuDni;
+    public void setUsuCon(String usuDni) {
+        UsuCon = usuDni;
     }
 
     public String getUsuLon() {

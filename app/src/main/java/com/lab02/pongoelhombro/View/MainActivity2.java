@@ -16,6 +16,7 @@ public class MainActivity2 extends AppCompatActivity {
     LoginFragment login = new LoginFragment();
     PrimeraDosisFragment primera_dosis=new PrimeraDosisFragment();
     SegundaDosisFragment segunda_dosis=new SegundaDosisFragment();
+    RegisterFragment registerFragment=new RegisterFragment();
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
@@ -23,6 +24,9 @@ public class MainActivity2 extends AppCompatActivity {
         Bundle parametro=this.getIntent().getExtras();
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,new datafragment()).commit();
         //loadFragment(login);
+
+
+
         int fragment=this.getIntent().getIntExtra("fragment",0);
         if(fragment==1)
         {
@@ -35,6 +39,10 @@ public class MainActivity2 extends AppCompatActivity {
         if(fragment==5)
         {
             loadFragment(segunda_dosis);
+        }
+        if(fragment==6)
+        {
+            loadFragment(registerFragment);
         }
 
 
