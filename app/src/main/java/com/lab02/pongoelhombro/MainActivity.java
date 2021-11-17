@@ -5,9 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.lab02.pongoelhombro.View.*;
@@ -31,7 +34,19 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        bottomNavigation.setItemIconTintList(null); //added
+        bottomNavigation.setItemIconTintList(null);
+
+        ImageView settingButton = (ImageView)findViewById(R.id.settingButton);
+        ImageView profileButton = (ImageView)findViewById(R.id.profileButton);
+
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(profileButton.getContext(),MainActivity2.class);
+                intent.putExtra("fragment",1);
+                startActivity(intent);
+            }
+        });
     }
 
     private final BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -57,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     };
+
 
     public void loadFragment(Fragment fragment){
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
