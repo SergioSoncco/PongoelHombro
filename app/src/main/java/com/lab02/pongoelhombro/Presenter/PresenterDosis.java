@@ -36,6 +36,7 @@ public class PresenterDosis {
         dosis.put("date", Fecha);
         dosis.put("vacc", Vacuna);
         dosis.put("number", Dosis);
+        dosis.put("userId", "");
 
 
         db.collection("Dosis")

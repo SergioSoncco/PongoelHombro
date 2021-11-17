@@ -74,7 +74,7 @@ public class SegundaDosisFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View vista = inflater.inflate(R.layout.fragment_primera_dosis, container, false);
+        View vista = inflater.inflate(R.layout.fragment_segunda_dosis, container, false);
 
         fecha = vista.findViewById(R.id.editTextDate);
         vacuna = vista.findViewById(R.id.editTextTextPersonName2);
