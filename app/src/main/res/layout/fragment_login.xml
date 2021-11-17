@@ -29,7 +29,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/quicksand_bold"
-            android:text="Iniciar Sesion"
+            android:text="Iniciar Sesión"
             android:textColor="#000000"
 
             android:textSize="34sp" />
@@ -40,7 +40,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="105dp"
             android:fontFamily="@font/quicksand_medium"
-            android:text="Nombre:"
+            android:text="Correo:"
             android:textColor="#000000"
 
             android:textSize="24sp" />
@@ -62,7 +62,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="205dp"
             android:fontFamily="@font/quicksand_medium"
-            android:text="DNI"
+            android:text="Contraseña"
             android:textColor="#000000"
 
             android:textSize="24sp" />
@@ -82,7 +82,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="245dp"
             android:ems="10"
-            android:inputType="numberPassword"
+            android:inputType="textPassword"
             android:minHeight="48dp" />
 
         <Button

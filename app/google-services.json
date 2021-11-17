@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "484944202032",
+    "firebase_url": "https://pongo-el-hombro-default-rtdb.firebaseio.com",
+    "project_id": "pongo-el-hombro",
+    "storage_bucket": "pongo-el-hombro.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:484944202032:android:599954c8180865782860f5",
+        "android_client_info": {
+          "package_name": "com.lab02.pongoelhombro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "484944202032-14c79hjvb12k8up1jkqda9p2l1pscpkj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lab02.pongoelhombro",
+            "certificate_hash": "6266c75f1962fef00b958d5d1c3f6f6c4f04071f"
+          }
+        },
+        {
+          "client_id": "484944202032-cs1afp4tt0k2ru36kdgd1202hoptl1i5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWwVXwKv8GOWN2gdsgFf5vNglfi0cTgIY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "484944202032-cs1afp4tt0k2ru36kdgd1202hoptl1i5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

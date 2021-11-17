@@ -1,4 +1,4 @@
-package com.lab02.pongoelhombro;
+package com.lab02.pongoelhombro.Presenter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,13 +9,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.lab02.pongoelhombro.Model.Noticia;
+import com.lab02.pongoelhombro.R;
+
 import java.util.ArrayList;
 
 public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder>
 {
-   ArrayList<com.lab02.pongoelhombro.datamodel> dataholder;
+   ArrayList<Noticia> dataholder;
 
-    public myadapter(ArrayList<com.lab02.pongoelhombro.datamodel> dataholder) {
+    public myadapter(ArrayList<Noticia> dataholder) {
         this.dataholder = dataholder;
     }
 

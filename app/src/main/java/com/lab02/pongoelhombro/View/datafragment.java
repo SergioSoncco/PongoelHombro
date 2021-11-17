@@ -1,4 +1,4 @@
-package com.lab02.pongoelhombro;
+package com.lab02.pongoelhombro.View;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +8,10 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.lab02.pongoelhombro.Model.Noticia;
+import com.lab02.pongoelhombro.R;
+import com.lab02.pongoelhombro.Presenter.myadapter;
 
 import java.util.ArrayList;
 
@@ -28,7 +32,7 @@ public class datafragment extends Fragment
     private String mParam1;
     private String mParam2;
     RecyclerView recyclerView;
-    ArrayList<com.lab02.pongoelhombro.datamodel> dataholder;
+    ArrayList<Noticia> dataholder;
 
     public datafragment() {
         // Required empty public constructor
@@ -64,15 +68,15 @@ public class datafragment extends Fragment
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         dataholder=new ArrayList<>();
 
-        com.lab02.pongoelhombro.datamodel ob1=new com.lab02.pongoelhombro.datamodel(R.drawable.unsacovid,"Noticia 4 vacunados","Se vacunaron 4 personas mas");
+        Noticia ob1=new Noticia(R.drawable.unsacovid,"Noticia 4 vacunados","Se vacunaron 4 personas mas");
         dataholder.add(ob1);
 
-        com.lab02.pongoelhombro.datamodel ob2=new com.lab02.pongoelhombro.datamodel(R.drawable.unsacovid,"Noticia 0 fallecidos","Hoy no hubieron fallecidos");
+        Noticia ob2=new Noticia(R.drawable.unsacovid,"Noticia 0 fallecidos","Hoy no hubieron fallecidos");
         dataholder.add(ob2);
 
-        com.lab02.pongoelhombro.datamodel ob3=new com.lab02.pongoelhombro.datamodel(R.drawable.unsacovid,"Noticia nuevo local","Nuevo local implementado");
+        Noticia ob3=new Noticia(R.drawable.unsacovid,"Noticia nuevo local","Nuevo local implementado");
         dataholder.add(ob3);
-        com.lab02.pongoelhombro.datamodel ob4=new com.lab02.pongoelhombro.datamodel(R.drawable.unsacovid,"Noticia nuevo local","Nuevo local implementado");
+        Noticia ob4=new Noticia(R.drawable.unsacovid,"Noticia nuevo local","Nuevo local implementado");
         dataholder.add(ob4);
 
 

@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +12,10 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.lab02.pongoelhombro.Presenter.RegisterAdapter;
 import com.lab02.pongoelhombro.R;
 
 /**
@@ -26,7 +29,7 @@ public class LoginFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-     EditText user,dni;
+    EditText user,dni;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -36,6 +39,10 @@ public class LoginFragment extends Fragment {
     Button ingresar;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
+
+
+    private FirebaseAuth mAuth;
+    private RegisterAdapter registerAdapter;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -66,6 +73,12 @@ public class LoginFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        mAuth = FirebaseAuth.getInstance();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        registerAdapter = new RegisterAdapter(this.getContext(), mAuth, databaseReference);
+
+
     }
 
     @Override
@@ -86,8 +99,14 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 guardarSesion(recordar.isChecked());
+
+                String UsuNom = user.getText().toString();
+                String UsuDni = dni.getText().toString();
+
+                registerAdapter.signInUser(UsuNom,UsuDni);
             }
         });
+
 
 
         return vista;
@@ -96,6 +115,7 @@ public class LoginFragment extends Fragment {
     {
         return this.preferences.getBoolean("sesion", false);
     }
+
     private void guardarSesion(boolean check)
     {
         editor.putBoolean("sesion", check);

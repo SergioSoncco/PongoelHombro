@@ -1,4 +1,4 @@
-package com.lab02.pongoelhombro;
+package com.lab02.pongoelhombro.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +13,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.lab02.pongoelhombro.View.*;
+import com.lab02.pongoelhombro.R;
 
 
 public class MainActivity extends AppCompatActivity {

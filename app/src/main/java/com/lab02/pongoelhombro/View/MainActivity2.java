@@ -1,4 +1,4 @@
-package com.lab02.pongoelhombro;
+package com.lab02.pongoelhombro.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,11 +6,9 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.view.MenuItem;
 import android.view.WindowManager;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.lab02.pongoelhombro.View.*;
+import com.lab02.pongoelhombro.R;
 
 
 public class MainActivity2 extends AppCompatActivity {
