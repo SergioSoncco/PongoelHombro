@@ -1,14 +1,33 @@
 package com.lab02.pongoelhombro.View;
 
+import static com.lab02.pongoelhombro.R.drawable.unsacovid;
+
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.lab02.pongoelhombro.Model.Noticia;
+import com.lab02.pongoelhombro.Presenter.myadapter;
 import com.lab02.pongoelhombro.R;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +44,12 @@ public class NewsFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private ArrayList<Noticia> noticias;
+    FirebaseFirestore db= FirebaseFirestore.getInstance();
+    View vista;
+    TextView prueba;
+    RecyclerView lista;
+
 
     public NewsFragment() {
         // Required empty public constructor
@@ -61,6 +86,34 @@ public class NewsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_news, container, false);
+        vista=inflater.inflate(R.layout.fragment_news, container, false);
+        prueba=vista.findViewById(R.id.prueba);
+        lista=vista.findViewById(R.id.noticias);
+        noticias=new ArrayList<Noticia>();
+        db.collection("Noticia")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult())
+                            {
+                                Noticia noticia=new Noticia(unsacovid,document.get("NotTit" )+"",document.get("NotDes")+"");
+                                noticias.add(noticia);
+                                prueba.setText("Noticias actuales");
+
+                                Log.d("TAG", document.getId() + " => " + document.getData());
+                            }
+
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.getException());
+
+                        }
+                    }
+                });
+        lista.setLayoutManager(new LinearLayoutManager(getContext()));
+        lista.setAdapter(new myadapter(noticias));
+
+        return vista;
     }
 }

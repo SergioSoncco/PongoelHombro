@@ -17,6 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.lab02.pongoelhombro.Presenter.PresenterLogin;
 import com.lab02.pongoelhombro.R;
+import com.lab02.pongoelhombro.Model.mySharePreference;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,8 +38,8 @@ public class LoginFragment extends Fragment {
     View vista;
     CheckBox recordar;
     Button ingresar;
-    SharedPreferences preferences;
-    SharedPreferences.Editor editor;
+    mySharePreference pre;
+
 
 
     private FirebaseAuth mAuth;
@@ -87,10 +88,10 @@ public class LoginFragment extends Fragment {
         // Inflate the layout for this fragment
         vista = inflater.inflate(R.layout.fragment_login, container, false);
         inicializar();
-        if(revisarSesion())
+        if(pre.revisarSesion())
         {
-            user.setText(this.preferences.getString("user",""));
-            dni.setText(this.preferences.getString("dni",""));
+            user.setText(pre.preferences.getString("user",""));
+            dni.setText(pre.preferences.getString("dni",""));
         }else
         {
             //vista.Toast.makeText(this, "Iniciar Sesion", Toast.LENGTH_SHORT).show();
@@ -98,7 +99,7 @@ public class LoginFragment extends Fragment {
         ingresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                guardarSesion(recordar.isChecked());
+                pre.guardarSesion(recordar.isChecked(),user.getText().toString(),dni.getText().toString());
 
                 String UsuNom = user.getText().toString();
                 String UsuDni = dni.getText().toString();
@@ -111,23 +112,9 @@ public class LoginFragment extends Fragment {
 
         return vista;
     }
-    private boolean revisarSesion()
-    {
-        return this.preferences.getBoolean("sesion", false);
-    }
 
-    private void guardarSesion(boolean check)
-    {
-        editor.putBoolean("sesion", check);
-        editor.putString("user",user.getText().toString());
-        editor.putString("dni",dni.getText().toString());
-        editor.apply();
-
-
-    }
     private void inicializar(){
-        preferences=getActivity().getPreferences(Context.MODE_PRIVATE);
-        editor=preferences.edit();
+        pre= new mySharePreference(getActivity().getPreferences(Context.MODE_PRIVATE));
         recordar=vista.findViewById(R.id.recordar);
         user=vista.findViewById(R.id.nombre);
         dni=vista.findViewById(R.id.dni);

@@ -1,14 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameinfo"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.NewsFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".View.MainActivity">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/quicksand_bold"
+        android:text="Noticias MINSA"
+        android:textColor="#000000"
+        android:textSize="34sp" />
+
+    <TextView
+        android:id="@+id/prueba"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/quicksand_light"
+        android:text="Informacion sobre los distintos tipos de vacunas."
+        android:textColor="#000000"
+        android:textSize="18sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/noticias"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_marginTop="100dp" />
 
 </FrameLayout>
