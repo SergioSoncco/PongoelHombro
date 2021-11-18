@@ -93,4 +93,25 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.frame_container, fragment);
         transaction.commit();
     }
+
+    public void onClick(View view) {
+        Fragment fragment = null;
+        switch (view.getId()) {
+            case R.id.primera_dosis:
+                fragment = new PrimeraDosisFragment();
+                replaceFragment(fragment);
+                break;
+
+            case R.id.segundosis:
+                fragment = new SegundaDosisFragment();
+                replaceFragment(fragment);
+                break;
+        }
+    }
+    public void replaceFragment(Fragment someFragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_container, someFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
 }

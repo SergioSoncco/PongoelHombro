@@ -84,18 +84,20 @@
                 android:background="@drawable/buttonround"
 
                 android:fontFamily="@font/quicksand_medium"
+                android:onClick="onClick"
                 android:text="1ra dosis\n Aplicada"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
             <Button
-                android:id="@+id/button8b"
+                android:id="@+id/segundosis"
                 android:layout_width="180dp"
                 android:layout_height="133dp"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/buttonround"
 
                 android:fontFamily="@font/quicksand_medium"
+                android:onClick="onClick"
                 android:text="2da dosis\n Aplicada"
                 android:textColor="#000000"
                 android:textSize="16sp" />
