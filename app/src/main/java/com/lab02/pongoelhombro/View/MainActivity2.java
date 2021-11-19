@@ -22,7 +22,7 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         Bundle parametro=this.getIntent().getExtras();
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,new datafragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,new HomeFragment()).commit();
         //loadFragment(login);
 
 

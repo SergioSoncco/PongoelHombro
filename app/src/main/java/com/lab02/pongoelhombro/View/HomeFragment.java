@@ -92,7 +92,32 @@ public class HomeFragment extends Fragment {
         vista=inflater.inflate(R.layout.fragment_home, container, false);
 
 
+        prueba=vista.findViewById(R.id.notmin);
+        lista=vista.findViewById(R.id.news);
+        news=new ArrayList<Noticia>();
+        db.collection("Noticia")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult())
+                            {
+                                Noticia noticia=new Noticia(unsacovid,document.get("NotTit" )+"",document.get("NotDes")+"");
+                                news.add(noticia);
+                                prueba.setText("Noticias actuales");
 
+                                Log.d("TAG", document.getId() + " => " + document.getData());
+                            }
+
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.getException());
+
+                        }
+                    }
+                });
+        lista.setLayoutManager(new LinearLayoutManager(getContext()));
+        lista.setAdapter(new myadapter(news));
         return  vista;
     }
 }
