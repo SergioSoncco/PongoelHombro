@@ -113,17 +113,15 @@
                 android:text="3ra dosis\n Aplicada"
                 android:textColor="#000000"
                 android:textSize="16sp" />
+
         </LinearLayout>
     </HorizontalScrollView>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyview"
+        android:id="@+id/news"
         android:layout_width="match_parent"
-        android:layout_height="355dp"
-        android:layout_marginTop="370dp"
-
-        />
-
+        android:layout_height="match_parent"
+        android:layout_marginTop="390dp" />
 
 
 </FrameLayout>

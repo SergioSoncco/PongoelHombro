@@ -1,14 +1,24 @@
 package com.lab02.pongoelhombro.View;
 
+import static com.lab02.pongoelhombro.R.drawable.unsacovid;
+
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.lab02.pongoelhombro.Model.Noticia;
 import com.lab02.pongoelhombro.R;
 import com.lab02.pongoelhombro.Presenter.myadapter;
@@ -33,7 +43,9 @@ public class datafragment extends Fragment
     private String mParam2;
     RecyclerView recyclerView;
     ArrayList<Noticia> dataholder;
-
+    FirebaseFirestore db= FirebaseFirestore.getInstance();
+    TextView prueba;
+    View view;
     public datafragment() {
         // Required empty public constructor
     }
@@ -63,23 +75,36 @@ public class datafragment extends Fragment
                              Bundle savedInstanceState)
     {
         // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_home, container, false);
-        recyclerView=view.findViewById(R.id.recyview);
+        view=inflater.inflate(R.layout.fragment_home, container, false);
+        recyclerView=view.findViewById(R.id.news);
+        //recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        dataholder=new ArrayList<Noticia>();
+        prueba=view.findViewById(R.id.notmin);
+
+
+
+        db.collection("Noticia")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult())
+                            {
+                                Noticia noticia=new Noticia(unsacovid,document.get("NotTit" )+"",document.get("NotDes")+"");
+                                dataholder.add(noticia);
+                                prueba.setText(document.get("NotTit" )+"");
+
+                                Log.d("TAG", document.getId() + " => " + document.getData());
+                            }
+
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.getException());
+
+                        }
+                    }
+                });
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        dataholder=new ArrayList<>();
-
-        Noticia ob1=new Noticia(R.drawable.unsacovid,"Noticia 4 vacunados","Se vacunaron 4 personas mas");
-        dataholder.add(ob1);
-
-        Noticia ob2=new Noticia(R.drawable.unsacovid,"Noticia 0 fallecidos","Hoy no hubieron fallecidos");
-        dataholder.add(ob2);
-
-        Noticia ob3=new Noticia(R.drawable.unsacovid,"Noticia nuevo local","Nuevo local implementado");
-        dataholder.add(ob3);
-        Noticia ob4=new Noticia(R.drawable.unsacovid,"Noticia nuevo local","Nuevo local implementado");
-        dataholder.add(ob4);
-
-
         recyclerView.setAdapter(new myadapter(dataholder));
 
         return view;
