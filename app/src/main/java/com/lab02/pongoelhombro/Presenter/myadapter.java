@@ -14,9 +14,11 @@ import com.lab02.pongoelhombro.R;
 
 import java.util.ArrayList;
 
-public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder>
+public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder> implements View.OnClickListener
 {
    ArrayList<Noticia> dataholder;
+    private View.OnClickListener listener;
+
 
     public myadapter(ArrayList<Noticia> dataholder) {
         this.dataholder = dataholder;
@@ -26,6 +28,7 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder>
     @Override
     public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.single_row_design,parent,false);
+        view.setOnClickListener(this);
         return new myviewholder(view);
     }
 
@@ -42,6 +45,18 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder>
     @Override
     public int getItemCount() {
         return dataholder.size();
+    }
+
+    public void setOnclickListener(View.OnClickListener listener)
+    {
+        this.listener=listener;
+    }
+    @Override
+    public void onClick(View view) {
+        if(listener!=null)
+        {
+            listener.onClick(view);
+        }
     }
 
     class myviewholder extends RecyclerView.ViewHolder

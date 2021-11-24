@@ -2,10 +2,12 @@ package com.lab02.pongoelhombro.View;
 
 import static com.lab02.pongoelhombro.R.drawable.unsacovid;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,10 +15,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -44,6 +44,7 @@ public class NewsFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
     private ArrayList<Noticia> noticias;
     FirebaseFirestore db= FirebaseFirestore.getInstance();
     View vista;
@@ -86,10 +87,12 @@ public class NewsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         vista=inflater.inflate(R.layout.fragment_news, container, false);
         prueba=vista.findViewById(R.id.prueba);
         lista=vista.findViewById(R.id.noticias);
         noticias=new ArrayList<Noticia>();
+
         db.collection("Noticia")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -112,8 +115,32 @@ public class NewsFragment extends Fragment {
                     }
                 });
         lista.setLayoutManager(new LinearLayoutManager(getContext()));
-        lista.setAdapter(new myadapter(noticias));
+        myadapter adapt=new myadapter(noticias);
+        adapt.setOnclickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DetailNewsFragment New = new DetailNewsFragment();
+                Bundle datos=new Bundle();
+
+                datos.putString("Titulo", noticias.get(lista.getChildAdapterPosition(view)).getHeader());
+                datos.putString("Descripcion", noticias.get(lista.getChildAdapterPosition(view)).getDesc());
+                Toast.makeText(getActivity().getApplicationContext(),
+                        "Seleccion: "+noticias.get(lista.getChildAdapterPosition(view)).getHeader(),Toast.LENGTH_SHORT).show();
+
+                New.setArguments(datos);
+                final FragmentTransaction ft=getFragmentManager().beginTransaction();
+                ft.replace(R.id.frame_container,New);
+                ft.addToBackStack("tag");
+                ft.commit();
+            }
+        });
+
+        lista.setAdapter(adapt);
 
         return vista;
     }
+
+
+
+
 }
