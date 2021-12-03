@@ -1,10 +1,13 @@
 package com.lab02.pongoelhombro.Model;
 
-class Vacuna {
+public class Vacuna {
 
     String VacCod, VacLab, VacInf, VacPai, VacSin, VacEst;
 
-    public Vacuna() {
+    public Vacuna(String VacPai, String VacLab, String VacSin) {
+        this.setVacPai(VacPai);
+        this.setVacLab(VacLab);
+        this.setVacSin(VacSin);
     }
 
     public String getVacCod() {
