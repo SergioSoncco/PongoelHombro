@@ -79,13 +79,6 @@
 
             />
 
-        <Button
-            android:id="@+id/bref"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:onClick="onClick"
-            android:text="Actualizar Datos" />
-
 
     </LinearLayout>
 

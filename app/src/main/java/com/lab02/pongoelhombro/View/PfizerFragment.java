@@ -85,7 +85,6 @@ public class PfizerFragment extends Fragment {
         t1= vista.findViewById(R.id.ptv1);
         t2= vista.findViewById(R.id.ptv2);
         t3= vista.findViewById(R.id.ptv3);
-        btn= vista.findViewById(R.id.bref);
         String pais="",lab,sint;
         vacs=new ArrayList<Vacuna>();
         db.collection("Vacuna")
@@ -95,8 +94,12 @@ public class PfizerFragment extends Fragment {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Vacuna vacunad = new Vacuna(document.get("VacPai") + "", document.get("VacLab") + "", document.get("VacSin") + "");
-                                vacs.add(vacunad);
+                                if("Pfizer".equals(document.get("VacNom")+"")) {
+                                    Vacuna vacunad = new Vacuna(document.get("VacPai") + "", document.get("VacLab") + "", document.get("VacSin") + "");
+                                    t1.setText(vacunad.getVacPai());
+                                    t2.setText(vacunad.getVacLab());
+                                    t3.setText(vacunad.getVacSin());
+                                }
 
                                 Log.d("TAG", document.getId() + " => " + document.getData());
                             }
@@ -107,8 +110,7 @@ public class PfizerFragment extends Fragment {
                         }
                     }
                 });
-        pais= (String.valueOf(vacs.size()));
-        t1.setText(pais);
+
         return vista;
     }
 }

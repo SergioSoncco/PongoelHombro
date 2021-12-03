@@ -2,13 +2,26 @@ package com.lab02.pongoelhombro.View;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.lab02.pongoelhombro.Model.Vacuna;
 import com.lab02.pongoelhombro.R;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,7 +34,12 @@ public class SinoFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    TextView t1,t2,t3;
+    Button btn;
+    View vista;
+    DatabaseReference reff;
+    FirebaseFirestore db= FirebaseFirestore.getInstance();
+    private ArrayList<Vacuna> vacs;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -61,6 +79,36 @@ public class SinoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sino, container, false);
+        vista= inflater.inflate(R.layout.fragment_sino, container, false);
+        t1= vista.findViewById(R.id.ptv1);
+        t2= vista.findViewById(R.id.ptv2);
+        t3= vista.findViewById(R.id.ptv3);
+        String pais="",lab,sint;
+        vacs=new ArrayList<Vacuna>();
+        db.collection("Vacuna")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                if("Sinopharm".equals(document.get("VacNom")+"")) {
+                                    Vacuna vacunad = new Vacuna(document.get("VacPai") + "", document.get("VacLab") + "", document.get("VacSin") + "");
+                                    t1.setText(vacunad.getVacPai());
+                                    t2.setText(vacunad.getVacLab());
+                                    t3.setText(vacunad.getVacSin());
+                                }
+
+                                Log.d("TAG", document.getId() + " => " + document.getData());
+                            }
+
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.getException());
+
+                        }
+                    }
+                });
+
+        return vista;
     }
 }
