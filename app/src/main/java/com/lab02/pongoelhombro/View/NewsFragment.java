@@ -101,7 +101,7 @@ public class NewsFragment extends Fragment {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult())
                             {
-                                Noticia noticia=new Noticia(unsacovid,document.get("NotTit" )+"",document.get("NotDes")+"");
+                                Noticia noticia=new Noticia(document.get("NotImg")+"",document.get("NotTit" )+"",document.get("NotDes")+"");
                                 noticias.add(noticia);
                                 prueba.setText("Noticias actuales");
 
@@ -124,6 +124,7 @@ public class NewsFragment extends Fragment {
 
                 datos.putString("Titulo", noticias.get(lista.getChildAdapterPosition(view)).getHeader());
                 datos.putString("Descripcion", noticias.get(lista.getChildAdapterPosition(view)).getDesc());
+                datos.putString("Imagen", noticias.get(lista.getChildAdapterPosition(view)).getImage());
                 Toast.makeText(getActivity().getApplicationContext(),
                         "Seleccion: "+noticias.get(lista.getChildAdapterPosition(view)).getHeader(),Toast.LENGTH_SHORT).show();
 

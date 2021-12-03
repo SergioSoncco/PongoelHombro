@@ -1,5 +1,6 @@
 package com.lab02.pongoelhombro.View;
 
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,9 +8,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lab02.pongoelhombro.R;
+import com.squareup.picasso.Picasso;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +31,7 @@ public class DetailNewsFragment extends Fragment {
     private String mParam2;
     View vista;
     TextView titulo,desripcion;
+    ImageView imagen;
 
     public DetailNewsFragment() {
         // Required empty public constructor
@@ -67,13 +71,24 @@ public class DetailNewsFragment extends Fragment {
         vista=inflater.inflate(R.layout.fragment_detail_news, container, false);
         titulo=vista.findViewById(R.id.titulo);
         desripcion=vista.findViewById(R.id.descripcion);
+        imagen=vista.findViewById(R.id.imageView2);
+        //Picasso.wiith(imagen.getContext()).lo
+        //Picasso.get().load("http://i.imgur.com/DvpvklR.png").into(imagen);
+
+
+
+        //imagen.setImageURI(Uri.parse("http://i.imgur.com/DvpvklR.png"));
+
+
         Bundle datos=getArguments();
         if(datos!=null)
         {
             String title=datos.getString("Titulo");
             String description= datos.getString("Descripcion");
+            String image_url=datos.getString("Imagen");
             titulo.setText(title);
             desripcion.setText(description);
+            Picasso.get().load(image_url).into(imagen);
         }
         return vista;
     }

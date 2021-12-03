@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.lab02.pongoelhombro.Model.Noticia;
 import com.lab02.pongoelhombro.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -35,9 +36,11 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder> impl
     @Override
     public void onBindViewHolder(@NonNull myviewholder holder, int position)
     {
-      holder.img.setImageResource(dataholder.get(position).getImage());
+      //holder.img.setImageResource(dataholder.get(position).getImage());
       holder.header.setText(dataholder.get(position).getHeader());
       holder.desc.setText(dataholder.get(position).getDesc());
+      Picasso.get().load(dataholder.get(position).getImage()).into(holder.img);
+
 
 
     }
