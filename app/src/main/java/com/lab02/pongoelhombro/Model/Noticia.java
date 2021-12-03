@@ -2,20 +2,20 @@ package com.lab02.pongoelhombro.Model;
 
 public class Noticia
 {
-   int image;
-   String cod, header,desc, text, cat;
 
-    public Noticia(int image, String header, String desc) {
+   String cod,image, header,desc, text, cat;
+
+    public Noticia(String image, String header, String desc) {
         this.image = image;
         this.header = header;
         this.desc = desc;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

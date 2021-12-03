@@ -103,7 +103,7 @@ public class HomeFragment extends Fragment {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult())
                             {
-                                Noticia noticia=new Noticia(unsacovid,document.get("NotTit" )+"",document.get("NotDes")+"");
+                                Noticia noticia=new Noticia(document.get("NotImg" )+"",document.get("NotTit" )+"",document.get("NotDes")+"");
                                 news.add(noticia);
                                 prueba.setText("Noticias actuales");
 

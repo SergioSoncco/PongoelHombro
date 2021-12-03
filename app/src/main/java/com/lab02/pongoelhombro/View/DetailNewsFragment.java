@@ -71,7 +71,7 @@ public class DetailNewsFragment extends Fragment {
         vista=inflater.inflate(R.layout.fragment_detail_news, container, false);
         titulo=vista.findViewById(R.id.titulo);
         desripcion=vista.findViewById(R.id.descripcion);
-        imagen=vista.findViewById(R.id.imageView2);
+        imagen=vista.findViewById(R.id.imageView);
         //Picasso.wiith(imagen.getContext()).lo
         //Picasso.get().load("http://i.imgur.com/DvpvklR.png").into(imagen);
 
