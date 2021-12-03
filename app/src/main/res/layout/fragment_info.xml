@@ -65,35 +65,38 @@
 
 
             <Button
-                android:id="@+id/b1"
+                android:id="@+id/bpfizer"
                 android:layout_width="180dp"
                 android:layout_height="133dp"
                 android:layout_marginStart="10dp"
                 android:background="@drawable/buttonround"
                 android:fontFamily="@font/quicksand_medium"
+                android:onClick="onClick"
                 android:text="pfizer"
                 android:textColor="#000000"
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/b2"
+                android:id="@+id/bsino"
                 android:layout_width="180dp"
                 android:layout_height="130dp"
                 android:layout_marginStart="10dp"
                 android:background="@drawable/buttonround"
                 android:fontFamily="@font/quicksand_medium"
+                android:onClick="onClick"
                 android:text="sinopharm"
                 android:textColor="#000000"
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/b3"
+                android:id="@+id/bastra"
                 android:layout_width="210dp"
                 android:layout_height="130dp"
 
                 android:layout_marginStart="10dp"
                 android:background="@drawable/buttonround"
                 android:fontFamily="@font/quicksand_medium"
+                android:onClick="onClick"
                 android:text="astrazeneca"
                 android:textColor="#000000"
                 android:textSize="20sp" />
@@ -101,11 +104,30 @@
 
     </HorizontalScrollView>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/estadisticas"
-        android:layout_width="match_parent"
-        android:layout_height="370dp"
-        android:layout_marginTop="400dp"
-        />
+    <Button
+        android:id="@+id/bda"
+        android:layout_width="380dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="380dp"
+
+        android:background="@drawable/buttonround"
+        android:fontFamily="@font/quicksand_bold"
+        android:onClick="onClick"
+        android:text="Dosis Aplicadas"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/bva"
+        android:layout_width="380dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="480dp"
+        android:background="@drawable/buttonround"
+
+        android:fontFamily="@font/quicksand_bold"
+        android:onClick="onClick"
+        android:text="Vacunas Aprobadas"
+        android:textSize="24sp" />
 
 </FrameLayout>

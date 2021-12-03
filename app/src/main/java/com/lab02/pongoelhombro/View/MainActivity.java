@@ -106,6 +106,26 @@ public class MainActivity extends AppCompatActivity {
                 fragment = new SegundaDosisFragment();
                 replaceFragment(fragment);
                 break;
+            case R.id.bpfizer:
+                fragment = new PfizerFragment();
+                replaceFragment(fragment);
+                break;
+            case R.id.bsino:
+                fragment = new SinoFragment();
+                replaceFragment(fragment);
+                break;
+            case R.id.bastra:
+                fragment = new AstraFragment();
+                replaceFragment(fragment);
+                break;
+            case R.id.bda:
+                fragment = new DosisFragment();
+                replaceFragment(fragment);
+                break;
+            case R.id.bva:
+                fragment = new VAplicadasFragment();
+                replaceFragment(fragment);
+                break;
         }
     }
     public void replaceFragment(Fragment someFragment) {
