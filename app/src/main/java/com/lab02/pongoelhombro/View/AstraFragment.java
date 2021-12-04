@@ -1,5 +1,6 @@
 package com.lab02.pongoelhombro.View;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -108,6 +109,21 @@ public class AstraFragment extends Fragment {
                         }
                     }
                 });
+
+        btn = vista.findViewById(R.id.bshare);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                String Body = "AstraZeneca, Pais:"+t1.getText()+"\n Laboratorio: "+t2.getText()+"\n Sintomas: "+t3.getText();
+                String Sub = "AstraZeneca, Pais:"+t1.getText()+"\n Laboratorio: "+t2.getText()+"\n Sintomas: "+t3.getText();
+                intent.putExtra(Intent.EXTRA_TEXT, Body);
+                intent.putExtra(Intent.EXTRA_TEXT, Sub);
+                startActivity(Intent.createChooser(intent, "Compartir en"));
+
+            }
+        });
 
         return vista;
     }

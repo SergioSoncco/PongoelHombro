@@ -79,6 +79,15 @@
 
             />
 
+        <Button
+            android:id="@+id/bshare"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="70dp"
+            android:onClick="onClick"
+            android:text="Compartir" />
+
 
     </LinearLayout>
 
