@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".View.VAplicadasFragment"
     android:background="@color/main_color">
-    >
+
 
     <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
@@ -13,67 +13,32 @@
         android:layout_height="match_parent"
         android:layout_marginTop="60dp"
         android:background="@drawable/roundtop">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="20dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical">
-    <TextView
-        android:id="@+id/tvvac"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/quicksand_bold"
-        android:text="Vacunas Aceptadas"
-        android:textColor="@color/black"
-        android:textSize="34sp" />
 
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/vacap"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                android:fontFamily="@font/quicksand_bold"
+                android:text="Vacunas Aceptadas"
+                android:textColor="@color/black"
+                android:textSize="34sp" />
 
-                <Button
-                    android:id="@+id/b1"
-                    android:layout_width="match_parent"
 
-                    android:layout_height="100dp"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/quicksand_bold"
-                    android:onClick="onClick"
-                    android:text="Pfizer"
-                    android:textSize="34sp" />
-
-                <Button
-                    android:id="@+id/b2"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/quicksand_bold"
-                    android:onClick="onClick"
-
-                    android:text="Sinopharm"
-                    android:textSize="34sp" />
-
-                <Button
-                    android:id="@+id/b3"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/quicksand_bold"
-                    android:onClick="onClick"
-
-                    android:text="AstraZeneca"
-                    android:textSize="34sp" />
-            </LinearLayout>
-        </ScrollView>
-
-    </LinearLayout>
+        </LinearLayout>
     </RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/vcc"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
 
+        android:layout_marginTop="150dp" />
 </FrameLayout>

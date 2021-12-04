@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="330dp"
         android:fontFamily="@font/quicksand_bold"
         android:text="Vacunas"
         android:textColor="#000000"
@@ -44,25 +44,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="380dp"
+        android:layout_marginTop="100dp"
         android:fontFamily="@font/quicksand_bold"
         android:text="En el Perú"
         android:textColor="#000000"
         android:textSize="24sp"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recvacunas"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
 
-        android:layout_marginTop="140dp" />
 
     <Button
         android:id="@+id/bda"
         android:layout_width="380dp"
         android:layout_height="75dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="420dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="150dp"
 
         android:background="@drawable/buttonround"
         android:fontFamily="@font/quicksand_bold"
@@ -74,13 +69,27 @@
         android:id="@+id/bva"
         android:layout_width="380dp"
         android:layout_height="75dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="520dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="240dp"
         android:background="@drawable/buttonround"
 
         android:fontFamily="@font/quicksand_bold"
         android:onClick="onClick"
         android:text="Vacunas Aprobadas"
         android:textSize="24sp" />
+
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recvacunas"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_marginTop="370dp" />
+
+
+
+
 
 </FrameLayout>

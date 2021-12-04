@@ -2,13 +2,30 @@ package com.lab02.pongoelhombro.View;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.lab02.pongoelhombro.Model.Vacuna;
+import com.lab02.pongoelhombro.Presenter.myadapter2;
 import com.lab02.pongoelhombro.R;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,7 +42,11 @@ public class VAplicadasFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    View vista;
+    FirebaseFirestore db2= FirebaseFirestore.getInstance();
+    RecyclerView recycler;
+    TextView prueba;
+    private ArrayList<Vacuna> vacunas;
     public VAplicadasFragment() {
         // Required empty public constructor
     }
@@ -61,6 +82,55 @@ public class VAplicadasFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_v_aplicadas, container, false);
+        vista= inflater.inflate(R.layout.fragment_v_aplicadas, container, false);
+        prueba=vista.findViewById(R.id.vacap);
+        recycler=vista.findViewById(R.id.vcc);
+        vacunas=new ArrayList<Vacuna>();
+        db2.collection("Vacuna")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult())
+                            {
+                                Vacuna newvacuna=new Vacuna(document.get("VacPai")+"",document.get("VacLab" )+"",document.get("VacSin")+"");
+                                prueba.setText("Vacunas Aceptadas:");
+                                vacunas.add(newvacuna);
+
+                                Log.d("TAG", document.getId() + " => " + document.getData());
+                            }
+
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.getException());
+
+                        }
+                    }
+                });
+        recycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        myadapter2 adapt=new myadapter2(vacunas);
+        adapt.setOnclickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DetailsVacunaFragment New = new DetailsVacunaFragment();
+                Bundle datos=new Bundle();
+
+                datos.putString("Titulo", vacunas.get(recycler.getChildAdapterPosition(view)).getVacLab());
+                datos.putString("vacPai", vacunas.get(recycler.getChildAdapterPosition(view)).getVacPai());
+                datos.putString("VacLab", vacunas.get(recycler.getChildAdapterPosition(view)).getVacLab());
+                datos.putString("VacSin", vacunas.get(recycler.getChildAdapterPosition(view)).getVacSin());
+                Toast.makeText(getActivity().getApplicationContext(),
+                        "Seleccion: "+vacunas.get(recycler.getChildAdapterPosition(view)).getVacLab(),Toast.LENGTH_SHORT).show();
+
+                New.setArguments(datos);
+                final FragmentTransaction ft=getFragmentManager().beginTransaction();
+                ft.replace(R.id.frame_container,New);
+                ft.addToBackStack("tag");
+                ft.commit();
+            }
+        });
+
+        recycler.setAdapter(adapt);
+        return vista;
     }
 }
