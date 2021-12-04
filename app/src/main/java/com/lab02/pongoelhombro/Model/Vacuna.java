@@ -2,7 +2,7 @@ package com.lab02.pongoelhombro.Model;
 
 public class Vacuna {
 
-    String VacCod, VacLab, VacInf, VacPai, VacSin, VacEst;
+    String VacLab, VacPai, VacSin;
 
     public Vacuna(String VacPai, String VacLab, String VacSin) {
         this.setVacPai(VacPai);
@@ -10,13 +10,7 @@ public class Vacuna {
         this.setVacSin(VacSin);
     }
 
-    public String getVacCod() {
-        return VacCod;
-    }
 
-    public void setVacCod(String vacCod) {
-        VacCod = vacCod;
-    }
 
     public String getVacLab() {
         return VacLab;
@@ -26,13 +20,7 @@ public class Vacuna {
         VacLab = vacLab;
     }
 
-    public String getVacInf() {
-        return VacInf;
-    }
 
-    public void setVacInf(String vacInf) {
-        VacInf = vacInf;
-    }
 
     public String getVacPai() {
         return VacPai;
@@ -50,11 +38,5 @@ public class Vacuna {
         VacSin = vacSin;
     }
 
-    public String getVacEst() {
-        return VacEst;
-    }
 
-    public void setVacEst(String vacEst) {
-        VacEst = vacEst;
-    }
 }

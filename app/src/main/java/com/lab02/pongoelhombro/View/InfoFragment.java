@@ -1,5 +1,6 @@
 package com.lab02.pongoelhombro.View;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -45,8 +46,8 @@ public class InfoFragment extends Fragment {
     private String mParam2;
     View  vista;
     FirebaseFirestore db= FirebaseFirestore.getInstance();
-    RecyclerView lista;
-    TextView vaclbl;
+    RecyclerView recycler;
+    TextView prueba;
     private ArrayList<Vacuna> vacunas;
     public InfoFragment() {
         // Required empty public constructor
@@ -80,15 +81,15 @@ public class InfoFragment extends Fragment {
 
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         vista= inflater.inflate(R.layout.fragment_info, container, false);
-        vaclbl=vista.findViewById(R.id.tv2);
-        lista=vista.findViewById(R.id.recvacunas);
+        prueba=vista.findViewById(R.id.tv2);
+        recycler=vista.findViewById(R.id.recvacunas);
         vacunas=new ArrayList<Vacuna>();
-
         db.collection("Vacuna")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -98,8 +99,8 @@ public class InfoFragment extends Fragment {
                             for (QueryDocumentSnapshot document : task.getResult())
                             {
                                 Vacuna newvacuna=new Vacuna(document.get("VacPai")+"",document.get("VacLab" )+"",document.get("VacSin")+"");
+                                prueba.setText("Vacunas:");
                                 vacunas.add(newvacuna);
-                                vaclbl.setText("Vacunas Actuales");
 
                                 Log.d("TAG", document.getId() + " => " + document.getData());
                             }
@@ -110,20 +111,20 @@ public class InfoFragment extends Fragment {
                         }
                     }
                 });
-        lista.setLayoutManager(new LinearLayoutManager(getContext()));
-        /*myadapter2 adapt=new myadapter2(vacunas);
+        recycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        myadapter2 adapt=new myadapter2(vacunas);
         adapt.setOnclickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DetailNewsFragment New = new DetailNewsFragment();
+                DetailsVacunaFragment New = new DetailsVacunaFragment();
                 Bundle datos=new Bundle();
 
-                datos.putString("Titulo", vacunas.get(lista.getChildAdapterPosition(view)).getVacLab());
-                datos.putString("vacPai", vacunas.get(lista.getChildAdapterPosition(view)).getVacPai());
-                datos.putString("VacLab", vacunas.get(lista.getChildAdapterPosition(view)).getVacLab());
-                datos.putString("VacSin", vacunas.get(lista.getChildAdapterPosition(view)).getVacSin());
+                datos.putString("Titulo", vacunas.get(recycler.getChildAdapterPosition(view)).getVacLab());
+                datos.putString("vacPai", vacunas.get(recycler.getChildAdapterPosition(view)).getVacPai());
+                datos.putString("VacLab", vacunas.get(recycler.getChildAdapterPosition(view)).getVacLab());
+                datos.putString("VacSin", vacunas.get(recycler.getChildAdapterPosition(view)).getVacSin());
                 Toast.makeText(getActivity().getApplicationContext(),
-                        "Seleccion: "+vacunas.get(lista.getChildAdapterPosition(view)).getVacLab(),Toast.LENGTH_SHORT).show();
+                        "Seleccion: "+vacunas.get(recycler.getChildAdapterPosition(view)).getVacLab(),Toast.LENGTH_SHORT).show();
 
                 New.setArguments(datos);
                 final FragmentTransaction ft=getFragmentManager().beginTransaction();
@@ -131,9 +132,11 @@ public class InfoFragment extends Fragment {
                 ft.addToBackStack("tag");
                 ft.commit();
             }
-        });*/
+        });
 
-        lista.setAdapter(new myadapter2(vacunas));
+        recycler.setAdapter(adapt);
+
+
         return  vista;
     }
 }
