@@ -126,6 +126,18 @@ public class MainActivity extends AppCompatActivity {
                 fragment = new VAplicadasFragment();
                 replaceFragment(fragment);
                 break;
+            case R.id.b1:
+                fragment = new PfizerFragment();
+                replaceFragment(fragment);
+                break;
+            case R.id.b2:
+                fragment = new SinoFragment();
+                replaceFragment(fragment);
+                break;
+            case R.id.b3:
+                fragment = new AstraFragment();
+                replaceFragment(fragment);
+                break;
         }
     }
     public void replaceFragment(Fragment someFragment) {
