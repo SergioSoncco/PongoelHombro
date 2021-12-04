@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.view.View;
 import android.view.WindowManager;
 
 import com.lab02.pongoelhombro.R;
@@ -17,6 +18,8 @@ public class MainActivity2 extends AppCompatActivity {
     PrimeraDosisFragment primera_dosis=new PrimeraDosisFragment();
     SegundaDosisFragment segunda_dosis=new SegundaDosisFragment();
     RegisterFragment registerFragment=new RegisterFragment();
+    VAplicadasFragment vAplicadasFragment= new VAplicadasFragment();
+    DosisFragment dosisFragment= new DosisFragment();
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
@@ -44,6 +47,14 @@ public class MainActivity2 extends AppCompatActivity {
         {
             loadFragment(registerFragment);
         }
+        if(fragment==7)
+        {
+            loadFragment(vAplicadasFragment);
+        }
+        if(fragment==8)
+        {
+            loadFragment(dosisFragment);
+        }
 
 
     }
@@ -52,4 +63,6 @@ public class MainActivity2 extends AppCompatActivity {
         transaction.replace(R.id.frame_container, fragment);
         transaction.commit();
     }
+
+
 }

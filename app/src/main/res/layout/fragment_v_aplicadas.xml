@@ -3,9 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.VAplicadasFragment">
+    tools:context=".View.VAplicadasFragment"
+    android:background="@color/main_color">
+    >
 
     <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/roundtop">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -67,5 +74,6 @@
         </ScrollView>
 
     </LinearLayout>
+    </RelativeLayout>
 
 </FrameLayout>

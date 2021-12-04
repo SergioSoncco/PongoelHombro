@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -25,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     InfoFragment infoFragment = new InfoFragment();
     CalendarFragment calendarFragment = new CalendarFragment();
     NewsFragment newsFragment = new NewsFragment();
+    Button click;
+    ImageView profileButton ;
 
     FirebaseAuth mAuth;
 
@@ -107,14 +110,7 @@ public class MainActivity extends AppCompatActivity {
                 replaceFragment(fragment);
                 break;
 
-            case R.id.bda:
-                fragment = new DosisFragment();
-                replaceFragment(fragment);
-                break;
-            case R.id.bva:
-                fragment = new VAplicadasFragment();
-                replaceFragment(fragment);
-                break;
+
             case R.id.b1:
                 fragment = new PfizerFragment();
                 replaceFragment(fragment);

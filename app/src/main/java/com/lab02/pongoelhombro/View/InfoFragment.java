@@ -1,6 +1,7 @@
 package com.lab02.pongoelhombro.View;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +50,7 @@ public class InfoFragment extends Fragment {
     FirebaseFirestore db= FirebaseFirestore.getInstance();
     RecyclerView recycler;
     TextView prueba;
+    Button dosis, vacunasd;
     private ArrayList<Vacuna> vacunas;
     public InfoFragment() {
         // Required empty public constructor
@@ -87,6 +90,25 @@ public class InfoFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         vista= inflater.inflate(R.layout.fragment_info, container, false);
+        dosis=vista.findViewById(R.id.bda);
+        vacunasd=vista.findViewById(R.id.bva);
+
+        dosis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1=new Intent(vista.getContext(), MainActivity2.class);
+                intent1.putExtra("fragment",8);
+                startActivity(intent1);
+            }
+        });
+        vacunasd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent2=new Intent(vista.getContext(), MainActivity2.class);
+                intent2.putExtra("fragment",7);
+                startActivity(intent2);
+            }
+        });
         prueba=vista.findViewById(R.id.tv2);
         recycler=vista.findViewById(R.id.recvacunas);
         vacunas=new ArrayList<Vacuna>();
