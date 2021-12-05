@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.WindowManager;
 
 import com.lab02.pongoelhombro.Model.Noticia;
+import com.lab02.pongoelhombro.Model.Vacuna;
 import com.lab02.pongoelhombro.R;
 
 
@@ -23,6 +24,7 @@ public class MainActivity2 extends AppCompatActivity {
     VAplicadasFragment vAplicadasFragment= new VAplicadasFragment();
     DosisFragment dosisFragment= new DosisFragment();
     DetailNewsFragment newFragment = new DetailNewsFragment();
+    DetailsVacunaFragment vacdetFragment= new DetailsVacunaFragment();
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
@@ -69,6 +71,24 @@ public class MainActivity2 extends AppCompatActivity {
                 datos.putString("Imagen", noticia.getImage());
                 newFragment.setArguments(datos);
                loadFragment(newFragment);
+            }
+
+            //loadFragment(dosisFragment);
+        }
+        if(fragment==10)
+        {
+            Vacuna vac= (Vacuna) getIntent().getSerializableExtra("Vacs");
+            if(vac!=null)
+            {
+                Bundle datos2=new Bundle();
+
+                datos2.putString("Titulo", vac.getVacLab());
+                datos2.putString("vacPai", vac.getVacPai());
+                datos2.putString("VacLab", vac.getVacLab());
+                datos2.putString("VacSin", vac.getVacSin());
+
+                vacdetFragment.setArguments(datos2);
+                loadFragment(vacdetFragment);
             }
 
             //loadFragment(dosisFragment);

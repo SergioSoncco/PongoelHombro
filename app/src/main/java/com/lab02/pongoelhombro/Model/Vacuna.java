@@ -1,6 +1,8 @@
 package com.lab02.pongoelhombro.Model;
 
-public class Vacuna {
+import java.io.Serializable;
+
+public class Vacuna implements Serializable {
 
     String VacLab, VacPai, VacSin;
 

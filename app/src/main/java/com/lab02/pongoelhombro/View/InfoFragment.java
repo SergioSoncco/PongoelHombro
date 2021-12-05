@@ -139,8 +139,8 @@ public class InfoFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 DetailsVacunaFragment New = new DetailsVacunaFragment();
-                Bundle datos=new Bundle();
-
+                Bundle datos2=new Bundle();
+                /*
                 datos.putString("Titulo", vacunas.get(recycler.getChildAdapterPosition(view)).getVacLab());
                 datos.putString("vacPai", vacunas.get(recycler.getChildAdapterPosition(view)).getVacPai());
                 datos.putString("VacLab", vacunas.get(recycler.getChildAdapterPosition(view)).getVacLab());
@@ -152,7 +152,18 @@ public class InfoFragment extends Fragment {
                 final FragmentTransaction ft=getFragmentManager().beginTransaction();
                 ft.replace(R.id.frame_container,New);
                 ft.addToBackStack("tag");
-                ft.commit();
+                ft.commit();*/
+                Intent intent2=new Intent(vista.getContext(), MainActivity2.class);
+                Vacuna vacuna= new Vacuna(vacunas.get(recycler.getChildAdapterPosition(view)).getVacPai()+"",
+                        vacunas.get(recycler.getChildAdapterPosition(view)).getVacLab()+"",
+                        vacunas.get(recycler.getChildAdapterPosition(view)).getVacSin()+"");
+
+                datos2.putSerializable("Vacs", vacuna);
+                intent2.putExtras(datos2);
+
+                intent2.putExtra("fragment",10);
+                startActivity(intent2);
+
             }
         });
 
