@@ -75,7 +75,7 @@
 
         android:fontFamily="@font/quicksand_bold"
         android:onClick="onClick"
-        android:text="Vacunas Aprobadas"
+        android:text="Mapa segun MINSA"
         android:textSize="24sp" />
 
 

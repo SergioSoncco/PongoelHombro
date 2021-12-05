@@ -68,7 +68,7 @@ public class DosisFragment extends Fragment {
         // Inflate the layout for this fragment
         vista= inflater.inflate(R.layout.fragment_dosis, container, false);
         webView= vista.findViewById(R.id.webview);
-        webView.loadUrl("https://www.datawrapper.de/_/ECTR9/");
+        webView.loadUrl("https://www.datawrapper.de/_/VFR2C/");
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
 

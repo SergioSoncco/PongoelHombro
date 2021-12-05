@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,6 +48,8 @@ public class VAplicadasFragment extends Fragment {
     FirebaseFirestore db2= FirebaseFirestore.getInstance();
     RecyclerView recycler;
     TextView prueba;
+    WebView webView;
+
     private ArrayList<Vacuna> vacunas;
     public VAplicadasFragment() {
         // Required empty public constructor
@@ -83,54 +87,10 @@ public class VAplicadasFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         vista= inflater.inflate(R.layout.fragment_v_aplicadas, container, false);
-        prueba=vista.findViewById(R.id.vacap);
-        recycler=vista.findViewById(R.id.vcc);
-        vacunas=new ArrayList<Vacuna>();
-        db2.collection("Vacuna")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult())
-                            {
-                                Vacuna newvacuna=new Vacuna(document.get("VacPai")+"",document.get("VacLab" )+"",document.get("VacSin")+"");
-                                prueba.setText("Vacunas Aceptadas:");
-                                vacunas.add(newvacuna);
-
-                                Log.d("TAG", document.getId() + " => " + document.getData());
-                            }
-
-                        } else {
-                            Log.w("TAG", "Error getting documents.", task.getException());
-
-                        }
-                    }
-                });
-        recycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        myadapter2 adapt=new myadapter2(vacunas);
-        adapt.setOnclickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DetailsVacunaFragment New = new DetailsVacunaFragment();
-                Bundle datos=new Bundle();
-
-                datos.putString("Titulo", vacunas.get(recycler.getChildAdapterPosition(view)).getVacLab());
-                datos.putString("vacPai", vacunas.get(recycler.getChildAdapterPosition(view)).getVacPai());
-                datos.putString("VacLab", vacunas.get(recycler.getChildAdapterPosition(view)).getVacLab());
-                datos.putString("VacSin", vacunas.get(recycler.getChildAdapterPosition(view)).getVacSin());
-                Toast.makeText(getActivity().getApplicationContext(),
-                        "Seleccion: "+vacunas.get(recycler.getChildAdapterPosition(view)).getVacLab(),Toast.LENGTH_SHORT).show();
-
-                New.setArguments(datos);
-                final FragmentTransaction ft=getFragmentManager().beginTransaction();
-                ft.replace(R.id.frame_container,New);
-                ft.addToBackStack("tag");
-                ft.commit();
-            }
-        });
-
-        recycler.setAdapter(adapt);
+        webView= vista.findViewById(R.id.webview);
+        webView.loadUrl("https://www.minsa.gob.pe/reunis/data/vacunas-covid19.asp");
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
         return vista;
     }
 }
