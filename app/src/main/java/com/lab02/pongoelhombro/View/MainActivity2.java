@@ -6,9 +6,11 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.lab02.pongoelhombro.Model.Noticia;
 import com.lab02.pongoelhombro.R;
 
 
@@ -20,6 +22,7 @@ public class MainActivity2 extends AppCompatActivity {
     RegisterFragment registerFragment=new RegisterFragment();
     VAplicadasFragment vAplicadasFragment= new VAplicadasFragment();
     DosisFragment dosisFragment= new DosisFragment();
+    DetailNewsFragment newFragment = new DetailNewsFragment();
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
@@ -54,6 +57,21 @@ public class MainActivity2 extends AppCompatActivity {
         if(fragment==8)
         {
             loadFragment(dosisFragment);
+        }
+        if(fragment==9)
+        {
+            Noticia noticia= (Noticia) getIntent().getSerializableExtra("Noticia");
+            if(noticia!=null)
+            {
+                Bundle datos=new Bundle();
+                datos.putString("Titulo", noticia.getHeader());
+                datos.putString("Descripcion", noticia.getDesc());
+                datos.putString("Imagen", noticia.getImage());
+                newFragment.setArguments(datos);
+               loadFragment(newFragment);
+            }
+
+            //loadFragment(dosisFragment);
         }
 
 

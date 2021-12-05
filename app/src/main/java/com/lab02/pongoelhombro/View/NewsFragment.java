@@ -122,7 +122,7 @@ public class NewsFragment extends Fragment {
                 DetailNewsFragment New = new DetailNewsFragment();
                 Bundle datos=new Bundle();
 
-                datos.putString("Titulo", noticias.get(lista.getChildAdapterPosition(view)).getHeader());
+                /*datos.putString("Titulo", noticias.get(lista.getChildAdapterPosition(view)).getHeader());
                 datos.putString("Descripcion", noticias.get(lista.getChildAdapterPosition(view)).getDesc());
                 datos.putString("Imagen", noticias.get(lista.getChildAdapterPosition(view)).getImage());
                 Toast.makeText(getActivity().getApplicationContext(),
@@ -132,7 +132,17 @@ public class NewsFragment extends Fragment {
                 final FragmentTransaction ft=getFragmentManager().beginTransaction();
                 ft.replace(R.id.frame_container,New);
                 ft.addToBackStack("tag");
-                ft.commit();
+                ft.commit();*/
+
+                Intent intent2=new Intent(vista.getContext(), MainActivity2.class);
+                Noticia noticia =new Noticia(noticias.get(lista.getChildAdapterPosition(view)).getImage()+"",
+                        noticias.get(lista.getChildAdapterPosition(view)).getHeader()+"",
+                        noticias.get(lista.getChildAdapterPosition(view)).getDesc()+"");
+                datos.putSerializable("Noticia", noticia);
+                intent2.putExtras(datos);
+
+                intent2.putExtra("fragment",9);
+                startActivity(intent2);
             }
         });
 

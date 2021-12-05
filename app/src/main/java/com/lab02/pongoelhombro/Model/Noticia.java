@@ -1,6 +1,9 @@
 package com.lab02.pongoelhombro.Model;
 
-public class Noticia
+import java.io.Serializable;
+
+@SuppressWarnings("serial") //With this annotation we are going to hide compiler warnings
+public class Noticia implements Serializable
 {
 
    String cod,image, header,desc, text, cat;
