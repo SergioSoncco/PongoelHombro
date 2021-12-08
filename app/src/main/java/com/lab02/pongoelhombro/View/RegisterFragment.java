@@ -1,5 +1,6 @@
 package com.lab02.pongoelhombro.View;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -39,6 +40,7 @@ public class RegisterFragment extends Fragment {
     Button ingresar;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
+    Button inicioSesion;
 
 
     private FirebaseAuth mAuth;
@@ -57,8 +59,8 @@ public class RegisterFragment extends Fragment {
      * @return A new instance of fragment LoginFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static LoginFragment newInstance(String param1, String param2) {
-        LoginFragment fragment = new LoginFragment();
+    public static RegisterFragment newInstance(String param1, String param2) {
+        RegisterFragment fragment = new RegisterFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -85,7 +87,7 @@ public class RegisterFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        vista = inflater.inflate(R.layout.fragment_login, container, false);
+        vista = inflater.inflate(R.layout.fragment_register, container, false);
         inicializar();
         if(revisarSesion())
         {
@@ -104,9 +106,18 @@ public class RegisterFragment extends Fragment {
                 String UsuDni = dni.getText().toString();
 
                 registerAdapter.signUpUser(UsuNom,UsuDni);
+
             }
         });
 
+        inicioSesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1=new Intent(vista.getContext(), MainActivity2.class);
+                intent1.putExtra("fragment",1);
+                startActivity(intent1);
+            }
+        });
 
 
         return vista;
@@ -131,7 +142,8 @@ public class RegisterFragment extends Fragment {
         recordar=vista.findViewById(R.id.recordar);
         user=vista.findViewById(R.id.nombre);
         dni=vista.findViewById(R.id.dni);
-        ingresar=vista.findViewById(R.id.ingresar);
+        ingresar=vista.findViewById(R.id.registrar);
+        inicioSesion=vista.findViewById(R.id.inicioSesion);
     }
 
 }

@@ -16,6 +16,8 @@ import android.widget.ImageView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.lab02.pongoelhombro.R;
 
 
@@ -29,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     Button click;
     ImageView profileButton ;
 
-    FirebaseAuth mAuth;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,14 +48,19 @@ public class MainActivity extends AppCompatActivity {
         ImageView settingButton = (ImageView)findViewById(R.id.settingButton);
         ImageView profileButton = (ImageView)findViewById(R.id.profileButton);
 
+
+        mAuth = FirebaseAuth.getInstance();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
                 Intent intent=new Intent(profileButton.getContext(),MainActivity2.class);
-                if (user != null) {
+                FirebaseUser currentUser = mAuth.getCurrentUser();
+
+                if (currentUser != null) {
                     // User is signed in
                     intent.putExtra("fragment",1);
                 } else {
