@@ -44,11 +44,20 @@ public class PresenterLogin {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(context, "No se pudo logear",
+                            Toast.makeText(context, "No pudo iniciar sesión",
                                     Toast.LENGTH_SHORT).show();
                         }
 
                     }
                 });
     }
+
+    public void signOut(){
+        mAuth.signOut();
+        Toast.makeText(context, "Se cerró sesión",
+                Toast.LENGTH_SHORT).show();
+    }
+
+    
+
 }

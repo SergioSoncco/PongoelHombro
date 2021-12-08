@@ -85,22 +85,10 @@
 
 
             android:background="@drawable/buttonround"
-            android:text="Adelante"
+            android:text="Registrarme"
             android:textColor="#000000" />
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="70dp"
-            android:layout_marginTop="400dp"
 
-            android:layout_marginBottom="38dp"
-            android:background="@drawable/buttonround"
-            android:gravity="bottom"
-            android:text="Continuar sin registrarse"
-            android:textColor="#000000" />
     </RelativeLayout>
 
 

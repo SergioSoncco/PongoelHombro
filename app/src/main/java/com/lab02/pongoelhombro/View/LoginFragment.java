@@ -1,5 +1,6 @@
 package com.lab02.pongoelhombro.View;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -11,8 +12,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.lab02.pongoelhombro.Presenter.PresenterLogin;
@@ -39,8 +42,7 @@ public class LoginFragment extends Fragment {
     CheckBox recordar;
     Button ingresar;
     mySharePreference pre;
-
-
+    Button sesion;
 
     private FirebaseAuth mAuth;
     private PresenterLogin registerAdapter;
@@ -79,7 +81,6 @@ public class LoginFragment extends Fragment {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         registerAdapter = new PresenterLogin(this.getContext(), mAuth, databaseReference);
 
-
     }
 
     @Override
@@ -88,6 +89,17 @@ public class LoginFragment extends Fragment {
         // Inflate the layout for this fragment
         vista = inflater.inflate(R.layout.fragment_login, container, false);
         inicializar();
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if (currentUser != null) {
+            // Is loged: Activate button "Cerrar Sesion"
+            sesion.setText("Cerrar Sesión");
+        } else {
+            // No user is signed in: Nothing to do
+            sesion.setText("Continuar sin iniciar sesión");
+        }
+
         if(pre.revisarSesion())
         {
             user.setText(pre.preferences.getString("user",""));
@@ -99,15 +111,33 @@ public class LoginFragment extends Fragment {
         ingresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pre.guardarSesion(recordar.isChecked(),user.getText().toString(),dni.getText().toString());
 
                 String UsuNom = user.getText().toString();
                 String UsuDni = dni.getText().toString();
+
+                pre.guardarSesion(recordar.isChecked(),UsuNom,UsuDni);
 
                 registerAdapter.signInUser(UsuNom,UsuDni);
             }
         });
 
+        sesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseUser currentUser = mAuth.getCurrentUser();
+
+                if (currentUser != null) {
+                    // Is loged:
+                    registerAdapter.signOut();
+
+                } else {
+                    // No user is signed in:
+                    Intent intent1=new Intent(vista.getContext(), MainActivity2.class);
+                    intent1.putExtra("fragment",6);
+                    startActivity(intent1);
+                }
+            }
+        });
 
 
         return vista;
@@ -119,6 +149,7 @@ public class LoginFragment extends Fragment {
         user=vista.findViewById(R.id.nombre);
         dni=vista.findViewById(R.id.dni);
         ingresar=vista.findViewById(R.id.ingresar);
+        sesion = vista.findViewById(R.id.button2);
     }
 
 }

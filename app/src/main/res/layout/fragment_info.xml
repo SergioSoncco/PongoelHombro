@@ -22,9 +22,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="60dp"
         android:fontFamily="@font/quicksand_light"
-        android:text="Informacion sobre los distintos tipos de vacunas."
+        android:text="Informacion sobre los distintos tipos de vacunas y información de vacunación."
         android:textColor="#000000"
         android:textSize="18sp" />
 
@@ -44,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="120dp"
         android:fontFamily="@font/quicksand_bold"
         android:text="En el Perú"
         android:textColor="#000000"
@@ -57,10 +57,10 @@
         android:layout_width="380dp"
         android:layout_height="75dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="160dp"
 
         android:background="@drawable/buttonround"
-        android:fontFamily="@font/quicksand_bold"
+        android:fontFamily="@font/quicksand_medium"
         android:onClick="onClick"
         android:text="Dosis Aplicadas"
         android:textSize="24sp" />
@@ -73,7 +73,7 @@
         android:layout_marginTop="240dp"
         android:background="@drawable/buttonround"
 
-        android:fontFamily="@font/quicksand_bold"
+        android:fontFamily="@font/quicksand_medium"
         android:onClick="onClick"
         android:text="Mapa segun MINSA"
         android:textSize="24sp" />
