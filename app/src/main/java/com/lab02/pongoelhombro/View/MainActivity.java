@@ -18,6 +18,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.lab02.pongoelhombro.Dialog;
+import com.lab02.pongoelhombro.Dialog_ver;
 import com.lab02.pongoelhombro.R;
 
 
@@ -108,18 +110,27 @@ public class MainActivity extends AppCompatActivity {
         Fragment fragment = null;
         switch (view.getId()) {
             case R.id.primera_dosis:
-                fragment = new PrimeraDosisFragment();
-                replaceFragment(fragment);
+                OpenDialog1 ();
                 break;
 
-            case R.id.segundosis:
-                fragment = new SegundaDosisFragment();
-                replaceFragment(fragment);
+            case R.id.segunda_dosis:
+                OpenDialog2 ();
                 break;
 
 
         }
     }
+
+    public void OpenDialog1 (){
+        Dialog dialog = new Dialog();
+        dialog.show(getSupportFragmentManager(),"hola mundo");
+    }
+
+    public void OpenDialog2 (){
+        Dialog_ver dialog = new Dialog_ver();
+        dialog.show(getSupportFragmentManager(),"ver");
+    }
+
     public void replaceFragment(Fragment someFragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_container, someFragment);
