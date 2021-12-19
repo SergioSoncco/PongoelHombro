@@ -44,11 +44,17 @@ import android.location.LocationManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.common.util.concurrent.SettableFuture;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.lab02.pongoelhombro.Model.Local;
+import com.lab02.pongoelhombro.Model.Noticia;
 import com.lab02.pongoelhombro.R;
 
 import android.util.Log;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -72,6 +78,8 @@ public class MapFragment extends Fragment {
     FusedLocationProviderClient client;
     double latitud;
     double longitud;
+    FirebaseFirestore db= FirebaseFirestore.getInstance();
+    private ArrayList<Local> locales;
 
     public MapFragment() {
         // Required empty public constructor
@@ -126,11 +134,44 @@ public class MapFragment extends Fragment {
             requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION
             ,Manifest.permission.ACCESS_COARSE_LOCATION}, 100);
         }
+        locales =new ArrayList<Local>();
+        db.collection("Locales")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult())
+                            {
+                               Local local =new Local(Integer.parseInt(document.get("idCentroVacunacion")+""),
+                                        Integer.parseInt( document.get("idUbigeo")+""),
+                                       Double.parseDouble(document.get("latitud")+""),
+                                        Double.parseDouble(document.get("longitud")+""),
+                                       document.get("nombre")+"");
+                                //Noticia noticia=new Noticia(document.get("NotImg")+"",document.get("NotTit" )+"",document.get("NotDes")+"");
+                                locales.add(local);
+                                //prueba.setText("Noticias actuales");
+
+                                Log.d("TAG", document.getId() + " => " + document.getData());
+                            }
+
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.getException());
+
+                        }
+                    }
+                });
         SupportMapFragment supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.google_map);
 
         supportMapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(@NonNull GoogleMap googleMap) {
+
+                for(int i =0;i<locales.size();i++)
+                {
+                    LatLng point =new LatLng(locales.get(i).getLocLat(),locales.get(i).getLocLon());
+                    googleMap.addMarker(new MarkerOptions().position(point).title(locales.get(i).getLonNom()));
+                }
                 LatLng myUbication =new LatLng(latitud,longitud);
                 googleMap.addMarker(new MarkerOptions().position(myUbication).title("Usted esta aqui"));
                 googleMap.moveCamera(CameraUpdateFactory.newLatLng(myUbication));
