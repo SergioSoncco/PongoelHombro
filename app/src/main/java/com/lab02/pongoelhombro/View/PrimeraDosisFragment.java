@@ -90,7 +90,7 @@ public class PrimeraDosisFragment extends Fragment {
                 String Fecha = fecha.getText().toString();
                 String Vacuna = vacuna.getText().toString();
 
-                presenterDosis.saveDosis(Fecha,Vacuna,"1");
+                presenterDosis.saveDosis(Fecha,Vacuna,"1", "casual");
             }
         });
 

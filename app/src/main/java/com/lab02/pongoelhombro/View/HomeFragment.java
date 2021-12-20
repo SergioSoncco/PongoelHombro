@@ -46,7 +46,7 @@ public class HomeFragment extends Fragment {
      RecyclerView lista;
      TextView prueba;
     private ArrayList<Noticia> news;
-
+    Button verdosis;
 
     // TODO: Rename and change types of parameters
     private String mParam1;

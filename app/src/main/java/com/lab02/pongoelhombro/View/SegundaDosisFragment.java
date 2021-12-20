@@ -87,7 +87,7 @@ public class SegundaDosisFragment extends Fragment {
                 String Fecha = fecha.getText().toString();
                 String Vacuna = vacuna.getText().toString();
 
-                presenterDosis.saveDosis(Fecha,Vacuna,"2");
+                presenterDosis.saveDosis(Fecha,Vacuna,"2", "casual");
             }
         });
 

@@ -17,11 +17,12 @@ import java.util.ArrayList;
 
 public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder> implements View.OnClickListener
 {
-   ArrayList<Noticia> dataholder;
+    ArrayList<Noticia> dataholder;
     private View.OnClickListener listener;
 
 
     public myadapter(ArrayList<Noticia> dataholder) {
+
         this.dataholder = dataholder;
     }
 

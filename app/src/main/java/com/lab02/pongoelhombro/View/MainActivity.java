@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     InfoFragment infoFragment = new InfoFragment();
     CalendarFragment calendarFragment = new CalendarFragment();
     NewsFragment newsFragment = new NewsFragment();
+
     Button click;
     ImageView profileButton ;
 
@@ -120,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+
 
     public void OpenDialog1 (){
         Dialog dialog = new Dialog();

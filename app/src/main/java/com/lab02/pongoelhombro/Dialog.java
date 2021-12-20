@@ -2,16 +2,24 @@ package com.lab02.pongoelhombro;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.lab02.pongoelhombro.Model.mySharePreference;
+import com.lab02.pongoelhombro.Presenter.PresenterDosis;
 import com.lab02.pongoelhombro.db.DbHelper;
 
 public class Dialog extends AppCompatDialogFragment {
@@ -20,16 +28,24 @@ public class Dialog extends AppCompatDialogFragment {
     private EditText Fecha;
     DbHelper miBD;
 
+    private FirebaseAuth mAuth;
+
+    private FirebaseFirestore db;
+    private PresenterDosis presenterDosis;
+
     @Override
     public android.app.Dialog onCreateDialog(Bundle savedInstanceState) {
-
         miBD = new DbHelper(getContext());
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.formulario,null);
 
+        db = FirebaseFirestore.getInstance();
+        presenterDosis = new PresenterDosis(this.getContext(),db);
 
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
 
         builder.setView(view)
                 .setTitle("Registrar Dosis")
@@ -46,7 +62,12 @@ public class Dialog extends AppCompatDialogFragment {
                         String select_vacuna = Vacuna.getSelectedItem().toString();
                         String select_fecha = Fecha.getText().toString();
 
-                        miBD.addData(select_dosis,select_vacuna,select_fecha);
+                        if (currentUser != null) {
+                            presenterDosis.saveDosis(select_fecha,select_vacuna,select_dosis,currentUser.getUid());
+                        }else{
+                            miBD.addData(select_dosis,select_vacuna,select_fecha);
+                        }
+
                     }
                 });
 

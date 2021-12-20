@@ -30,13 +30,13 @@ public class PresenterDosis {
         this.db = db;
     }
 
-    public void saveDosis(String Fecha, String Vacuna, String Dosis){
+    public void saveDosis(String Fecha, String Vacuna, String Dosis, String user){
 
         Map<String, Object> dosis = new HashMap<>();
         dosis.put("date", Fecha);
         dosis.put("vacc", Vacuna);
         dosis.put("number", Dosis);
-        dosis.put("userId", "");
+        dosis.put("userId", user);
 
 
         db.collection("Dosis")

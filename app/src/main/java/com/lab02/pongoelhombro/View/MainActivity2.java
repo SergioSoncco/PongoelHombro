@@ -25,6 +25,7 @@ public class MainActivity2 extends AppCompatActivity {
     DosisFragment dosisFragment= new DosisFragment();
     DetailNewsFragment newFragment = new DetailNewsFragment();
     DetailsVacunaFragment vacdetFragment= new DetailsVacunaFragment();
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
@@ -91,8 +92,10 @@ public class MainActivity2 extends AppCompatActivity {
                 loadFragment(vacdetFragment);
             }
 
+
             //loadFragment(dosisFragment);
         }
+
 
 
     }
