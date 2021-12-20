@@ -143,16 +143,31 @@ public class MapFragment extends Fragment {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult())
                             {
-                               Local local =new Local(Integer.parseInt(document.get("idCentroVacunacion")+""),
-                                        Integer.parseInt( document.get("idUbigeo")+""),
-                                       Double.parseDouble(document.get("latitud")+""),
-                                        Double.parseDouble(document.get("longitud")+""),
-                                       document.get("nombre")+"");
-                                //Noticia noticia=new Noticia(document.get("NotImg")+"",document.get("NotTit" )+"",document.get("NotDes")+"");
-                                locales.add(local);
-                                //prueba.setText("Noticias actuales");
+                                if(document.get("idCentroVacunacion").toString()!=null&&
+                                        document.get("idUbigeo").toString()!=null&&
+                                        document.get("latitud").toString()!=null&&
+                                        document.get("longitud").toString()!=null)
+                                {
+                                    int radio=50;
+                                    double latmp=Double.parseDouble(document.get("latitud")+"");
+                                    double lotmp=Double.parseDouble(document.get("longitud")+"");
+                                    if((latmp>latitud-radio&&latmp<latitud+radio)&&(lotmp>longitud-radio&&lotmp<longitud+radio))
+                                    {
+                                        Local local =new Local(Integer.parseInt(document.get("idCentroVacunacion")+""),
+                                                Integer.parseInt( document.get("idUbigeo")+""),
+                                                Double.parseDouble(document.get("latitud")+""),
+                                                Double.parseDouble(document.get("longitud")+""),
+                                                document.get("nombre")+"");
+                                        //Noticia noticia=new Noticia(document.get("NotImg")+"",document.get("NotTit" )+"",document.get("NotDes")+"");
+                                        locales.add(local);
+                                        //prueba.setText("Noticias actuales");
 
-                                Log.d("TAG", document.getId() + " => " + document.getData());
+                                        Log.d("TAG", document.getId() + " => " + document.getData());
+
+                                    }
+
+                                }
+
                             }
 
                         } else {
