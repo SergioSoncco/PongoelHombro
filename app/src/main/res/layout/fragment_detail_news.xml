@@ -22,7 +22,7 @@
             android:fontFamily="@font/quicksand_bold"
             android:text="Noticia 1"
             android:textColor="@color/black"
-            android:textSize="34sp" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/descripcion"
@@ -33,13 +33,15 @@
             android:fontFamily="@font/quicksand_bold"
             android:text="Descripcion"
             android:textColor="@color/black"
-            android:textSize="25sp" />
+            android:textSize="18sp" />
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="180dp"
+            android:layout_width="match_parent"
+            android:layout_height="404dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="280dp"
+            android:layout_marginRight="20dp"
             android:src="@drawable/unsacovid" />
 
     </RelativeLayout>

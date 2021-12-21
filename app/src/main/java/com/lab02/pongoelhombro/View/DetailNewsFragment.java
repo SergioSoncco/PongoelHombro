@@ -88,7 +88,7 @@ public class DetailNewsFragment extends Fragment {
             String image_url=datos.getString("Imagen");
             titulo.setText(title);
             desripcion.setText(description);
-            Picasso.get().load(image_url).into(imagen);
+            Picasso.get().load(image_url).resize(600,600).centerCrop().into(imagen);
         }
         return vista;
     }
