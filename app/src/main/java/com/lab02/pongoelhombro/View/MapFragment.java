@@ -143,12 +143,14 @@ public class MapFragment extends Fragment {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult())
                             {
-                                if(document.get("idCentroVacunacion").toString()!=null&&
-                                        document.get("idUbigeo").toString()!=null&&
-                                        document.get("latitud").toString()!=null&&
-                                        document.get("longitud").toString()!=null)
+                                //Log.d("TOG", document.getId() + " => " + document.getData());
+                                if(document.get("idCentroVacunacion")!=null&&
+                                        document.get("idUbigeo")!=null&&
+                                        document.get("latitud")!=null&&
+                                        document.get("longitud")!=null)
                                 {
-                                    int radio=50;
+                                    //Log.d("TOG", document.getId() + " => " + document.getData());
+                                    int radio=1;
                                     double latmp=Double.parseDouble(document.get("latitud")+"");
                                     double lotmp=Double.parseDouble(document.get("longitud")+"");
                                     if((latmp>latitud-radio&&latmp<latitud+radio)&&(lotmp>longitud-radio&&lotmp<longitud+radio))
@@ -162,50 +164,53 @@ public class MapFragment extends Fragment {
                                         locales.add(local);
                                         //prueba.setText("Noticias actuales");
 
-                                        Log.d("TAG", document.getId() + " => " + document.getData());
+                                        Log.d("TEG", document.getId() + " => " + document.getData());
 
                                     }
 
                                 }
 
                             }
+                            Log.d("TAMAÑO",  " => "+locales.size() );
 
                         } else {
                             Log.w("TAG", "Error getting documents.", task.getException());
 
                         }
+                        SupportMapFragment supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.google_map);
+
+                        supportMapFragment.getMapAsync(new OnMapReadyCallback() {
+                            @Override
+                            public void onMapReady(@NonNull GoogleMap googleMap) {
+                                Log.d("SIZE",  " => "+locales.size() );
+                                for(int i =0;i<locales.size();i++)
+                                {
+                                    Log.d("TIG",  " => " );
+                                    LatLng point =new LatLng(locales.get(i).getLocLat(),locales.get(i).getLocLon());
+                                    googleMap.addMarker(new MarkerOptions().position(point).title(locales.get(i).getLonNom()));
+                                }
+                                LatLng myUbication =new LatLng(latitud,longitud);
+                                googleMap.addMarker(new MarkerOptions().position(myUbication).title("Usted esta aqui"));
+                                googleMap.moveCamera(CameraUpdateFactory.newLatLng(myUbication));
+                                googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+
+                                    @Override
+                                    public void onMapClick(@NonNull LatLng latLng) {
+                                        MarkerOptions markerOptions = new MarkerOptions();
+                                        markerOptions.position(latLng);
+                                        markerOptions.title(latLng.latitude + " : " + latLng.longitude);
+                                        googleMap.clear();
+                                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
+                                                latLng, 10
+                                        ));
+                                        googleMap.addMarker(markerOptions);
+                                    }
+                                });
+                            }
+                        });
                     }
                 });
-        SupportMapFragment supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.google_map);
 
-        supportMapFragment.getMapAsync(new OnMapReadyCallback() {
-            @Override
-            public void onMapReady(@NonNull GoogleMap googleMap) {
-
-                for(int i =0;i<locales.size();i++)
-                {
-                    LatLng point =new LatLng(locales.get(i).getLocLat(),locales.get(i).getLocLon());
-                    googleMap.addMarker(new MarkerOptions().position(point).title(locales.get(i).getLonNom()));
-                }
-                LatLng myUbication =new LatLng(latitud,longitud);
-                googleMap.addMarker(new MarkerOptions().position(myUbication).title("Usted esta aqui"));
-                googleMap.moveCamera(CameraUpdateFactory.newLatLng(myUbication));
-                googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-
-                    @Override
-                    public void onMapClick(@NonNull LatLng latLng) {
-                        MarkerOptions markerOptions = new MarkerOptions();
-                        markerOptions.position(latLng);
-                        markerOptions.title(latLng.latitude + " : " + latLng.longitude);
-                        googleMap.clear();
-                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
-                                latLng, 10
-                        ));
-                        googleMap.addMarker(markerOptions);
-                    }
-                });
-            }
-        });
 
         return view;
     }
