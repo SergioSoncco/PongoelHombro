@@ -15,16 +15,17 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:fontFamily="@font/quicksand_bold"
-        android:text="Informate"
+        android:text="@string/inform"
         android:textColor="#000000"
         android:textSize="34sp" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="60dp"
         android:fontFamily="@font/quicksand_light"
-        android:text="Informacion sobre los distintos tipos de vacunas y información de vacunación."
+        android:text="@string/informtext"
         android:textColor="#000000"
         android:textSize="18sp" />
 
@@ -35,9 +36,9 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="330dp"
         android:fontFamily="@font/quicksand_bold"
-        android:text="Vacunas"
+        android:text="@string/vaccines"
         android:textColor="#000000"
-        android:textSize="24sp"/>
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/tv3"
@@ -46,10 +47,9 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="120dp"
         android:fontFamily="@font/quicksand_bold"
-        android:text="En el Perú"
+        android:text="@string/inperu"
         android:textColor="#000000"
-        android:textSize="24sp"/>
-
+        android:textSize="24sp" />
 
 
     <Button
@@ -62,7 +62,7 @@
         android:background="@drawable/buttonround"
         android:fontFamily="@font/quicksand_medium"
         android:onClick="onClick"
-        android:text="Dosis Aplicadas"
+        android:text="@string/applied"
         android:textSize="24sp" />
 
     <Button
@@ -75,7 +75,7 @@
 
         android:fontFamily="@font/quicksand_medium"
         android:onClick="onClick"
-        android:text="Mapa segun MINSA"
+        android:text="@string/mapminsa"
         android:textSize="24sp" />
 
 

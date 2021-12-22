@@ -94,10 +94,9 @@ public class LoginFragment extends Fragment {
 
         if (currentUser != null) {
             // Is loged: Activate button "Cerrar Sesion"
-            sesion.setText("Cerrar Sesión");
+            sesion.setText(R.string.cerrarsesion);
         } else {
             // No user is signed in: Nothing to do
-            sesion.setText("Continuar sin iniciar sesión");
         }
 
         if(pre.revisarSesion())

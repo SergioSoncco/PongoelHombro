@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="login">Log In</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="remember">Remember</string>
+    <string name="go">Go</string>
+    <string name="continuar">Continue without log in</string>
+    <string name="cerrarsesion">Log Out</string>
+
+    <string name="signin">Sign In</string>
+    <string name="signup">Sign Up</string>
+    <string name="gotologin">Go to Log in</string>
+
+    <string name="yourvaccines">Your Vaccines</string>
+    <string name="firstdosis">1ST Dose</string>
+    <string name="seconddosis">2ND Dose</string>
+
+    <string name="inform">Infom Yourself</string>
+    <string name="informtext">Information on the different types of vaccines and vaccination information.</string>
+    <string name="inperu">In Peru</string>
+    <string name="applied">Applied Doses</string>
+    <string name="mapminsa">Map by MINSA</string>
+    <string name="vaccines">Vaccines</string>
+
+
+</resources>

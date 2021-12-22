@@ -18,9 +18,9 @@
             android:id="@+id/titulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tus vacunas"
-            android:textColor="@color/black"
             android:fontFamily="@font/quicksand_bold"
+            android:text="@string/yourvaccines"
+            android:textColor="@color/black"
             android:textSize="34sp" />
 
         <CalendarView
@@ -31,22 +31,22 @@
         <Button
             android:id="@+id/primera"
             style="@style/Widget.AppCompat.Button"
-            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="66dp"
             android:layout_margin="10dp"
             android:background="@drawable/buttonround"
             android:ellipsize="start"
-            android:text="1ra Dosis" />
+            android:text="@string/firstdosis"
+            android:textColor="@color/black" />
 
         <Button
             android:id="@+id/segunda"
             android:layout_width="match_parent"
-            android:textColor="@color/black"
             android:layout_height="62dp"
             android:layout_margin="10dp"
             android:background="@drawable/buttonround"
-            android:text="2da Dosis" />
+            android:text="@string/seconddosis"
+            android:textColor="@color/black" />
 
     </LinearLayout>
 </FrameLayout>

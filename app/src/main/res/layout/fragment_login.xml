@@ -20,7 +20,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/quicksand_bold"
-            android:text="Iniciar Sesión"
+            android:text="@string/login"
             android:textColor="#000000"
 
             android:textSize="34sp" />
@@ -31,7 +31,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="105dp"
             android:fontFamily="@font/quicksand_medium"
-            android:text="Correo:"
+            android:text="@string/email"
             android:textColor="#000000"
 
             android:textSize="24sp" />
@@ -53,7 +53,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="205dp"
             android:fontFamily="@font/quicksand_medium"
-            android:text="Contraseña"
+            android:text="@string/password"
             android:textColor="#000000"
 
             android:textSize="24sp" />
@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
             android:layout_marginTop="290dp"
-            android:text="Recordar" />
+            android:text="@string/remember" />
 
         <EditText
             android:id="@+id/dni"
@@ -85,7 +85,7 @@
 
 
             android:background="@drawable/buttonround"
-            android:text="Adelante"
+            android:text="@string/go"
             android:textColor="#000000" />
 
         <Button
@@ -93,13 +93,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+
             android:layout_centerInParent="true"
             android:layout_marginTop="400dp"
-
             android:layout_marginBottom="43dp"
             android:background="@drawable/buttonround"
             android:gravity="bottom"
-            android:text="Continuar sin iniciar Sesion"
+            android:text="@string/continuar"
             android:textColor="#000000" />
     </RelativeLayout>
 
