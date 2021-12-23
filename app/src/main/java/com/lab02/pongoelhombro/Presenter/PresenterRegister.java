@@ -41,16 +41,6 @@ public class PresenterRegister {
                             Toast.makeText(context, "Creado Exitosamente",
                                     Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
-                            /*Map<String, Object> usuario = new HashMap<>();
-                            usuario.put("UsuCod", UUID.randomUUID().toString());
-                            usuario.put("UsuCor",UsuCor);
-                            usuario.put("UsuCon",UsuCon);
-                            usuario.put("UsuLon","");
-                            usuario.put("UsuLat","");
-                            mDatabase.child("Usuario").child(task.getResult().getUser().getUid()).updateChildren(usuario);*/
-
-
-
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());

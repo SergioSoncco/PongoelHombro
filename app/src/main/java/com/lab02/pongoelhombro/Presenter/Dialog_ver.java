@@ -1,4 +1,4 @@
-package com.lab02.pongoelhombro;
+package com.lab02.pongoelhombro.Presenter;
 
 import android.content.DialogInterface;
 import android.database.Cursor;
@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.lab02.pongoelhombro.R;
 import com.lab02.pongoelhombro.db.DbHelper;
 
 import java.util.ArrayList;

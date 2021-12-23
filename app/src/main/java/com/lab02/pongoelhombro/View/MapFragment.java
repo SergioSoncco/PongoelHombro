@@ -1,17 +1,12 @@
 package com.lab02.pongoelhombro.View;
 
-import static androidx.core.content.ContextCompat.getSystemService;
-
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 
-import android.media.audiofx.Equalizer;
-import android.media.audiofx.Virtualizer;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -38,18 +33,12 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.location.LocationRequest;
 
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.common.util.concurrent.SettableFuture;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.lab02.pongoelhombro.Dialog_local;
-import com.lab02.pongoelhombro.Dialog_ver;
 import com.lab02.pongoelhombro.Model.Local;
 import com.lab02.pongoelhombro.Model.Noticia;
 import com.lab02.pongoelhombro.R;
@@ -58,7 +47,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -214,7 +202,7 @@ public class MapFragment extends Fragment {
                                 }
                                 LatLng myUbication =new LatLng(latitud,longitud);
                                 googleMap.addMarker(new MarkerOptions().position(myUbication).title("Usted esta aqui"));
-                                googleMap.moveCamera(CameraUpdateFactory.newLatLng(myUbication));
+                                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myUbication,15));
                                 googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
 
                                     @Override
