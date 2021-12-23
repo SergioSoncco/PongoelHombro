@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.lab02.pongoelhombro.Dialog;
+import com.lab02.pongoelhombro.Dialog_local;
 import com.lab02.pongoelhombro.Dialog_ver;
 import com.lab02.pongoelhombro.R;
 
@@ -118,7 +119,6 @@ public class MainActivity extends AppCompatActivity {
                 OpenDialog2 ();
                 break;
 
-
         }
     }
 
@@ -132,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
         Dialog_ver dialog = new Dialog_ver();
         dialog.show(getSupportFragmentManager(),"ver");
     }
+
 
     public void replaceFragment(Fragment someFragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

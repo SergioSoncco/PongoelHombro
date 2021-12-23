@@ -96,13 +96,6 @@ public class Dialog_ver extends AppCompatDialogFragment {
             });
         }
 
-        builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-            }
-        });
-
         return builder.create();
     }
 

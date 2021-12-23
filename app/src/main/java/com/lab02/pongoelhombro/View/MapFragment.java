@@ -34,6 +34,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.location.LocationRequest;
 
@@ -47,6 +48,8 @@ import com.google.common.util.concurrent.SettableFuture;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.lab02.pongoelhombro.Dialog_local;
+import com.lab02.pongoelhombro.Dialog_ver;
 import com.lab02.pongoelhombro.Model.Local;
 import com.lab02.pongoelhombro.Model.Noticia;
 import com.lab02.pongoelhombro.R;
@@ -187,7 +190,27 @@ public class MapFragment extends Fragment {
                                 {
                                     Log.d("TIG",  " => " );
                                     LatLng point =new LatLng(locales.get(i).getLocLat(),locales.get(i).getLocLon());
-                                    googleMap.addMarker(new MarkerOptions().position(point).title(locales.get(i).getLonNom()));
+                                    googleMap.addMarker(
+                                            new MarkerOptions()
+                                            .position(point)
+                                            .title(locales.get(i).getLonNom()));
+
+
+                                    //aca agregar
+                                    googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                                        @Override
+                                        public boolean onMarkerClick(@NonNull Marker marker) {
+                                            Bundle args = new Bundle();
+                                            args.putString("name_", marker.getTitle());
+                                            args.putString("lat_", Double.toString(marker.getPosition().latitude));
+                                            args.putString("log_", Double.toString(marker.getPosition().longitude));
+                                            Dialog_local dialog = new Dialog_local();
+                                            dialog.setArguments(args);
+                                            dialog.show(getFragmentManager(), "Local_dialog");
+                                            return false;
+                                        }
+                                    });
+
                                 }
                                 LatLng myUbication =new LatLng(latitud,longitud);
                                 googleMap.addMarker(new MarkerOptions().position(myUbication).title("Usted esta aqui"));

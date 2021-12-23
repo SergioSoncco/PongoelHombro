@@ -1,13 +1,18 @@
 package com.lab02.pongoelhombro;
 
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -22,10 +27,15 @@ import com.lab02.pongoelhombro.Model.mySharePreference;
 import com.lab02.pongoelhombro.Presenter.PresenterDosis;
 import com.lab02.pongoelhombro.db.DbHelper;
 
+import java.util.Calendar;
+import java.util.Random;
+
 public class Dialog extends AppCompatDialogFragment {
 
     private Spinner Dosis,Vacuna;
-    private EditText Fecha;
+    private TextView Fecha;
+    DatePickerDialog.OnDateSetListener setListener;
+
     DbHelper miBD;
 
     private FirebaseAuth mAuth;
@@ -49,13 +59,13 @@ public class Dialog extends AppCompatDialogFragment {
 
         builder.setView(view)
                 .setTitle("Registrar Dosis")
-                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                .setNegativeButton("cancelar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialoginterface, int i){
 
                     }
                 })
-                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                .setPositiveButton("registrar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         String select_dosis = Dosis.getSelectedItem().toString();
@@ -78,6 +88,32 @@ public class Dialog extends AppCompatDialogFragment {
         Dosis.setAdapter(adapter);
 
         Fecha = view.findViewById(R.id.fecha);
+        Calendar calendar = Calendar.getInstance();
+        final int year = calendar.get(Calendar.YEAR);
+        final int month = calendar.get(Calendar.MONTH);
+        final int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        Fecha.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        getContext(), android.R.style.Theme_Material_Dialog_MinWidth,
+                        setListener,year,month,day);
+                datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                datePickerDialog.show();
+            }
+        });
+
+        setListener = new DatePickerDialog.OnDateSetListener(){
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                month = month +1;
+                String date = day+"/"+month+"/"+year;
+                Fecha.setText(date);
+            }
+        };
+
+
 
         Vacuna = view.findViewById(R.id.spin_vacuna);
         String[] menu2 = { "Pfizer","Sinopharm", "AstraZeneca"};
